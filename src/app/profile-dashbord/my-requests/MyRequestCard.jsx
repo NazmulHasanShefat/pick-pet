@@ -1,6 +1,7 @@
+import { Chip } from "@heroui/react";
 import Image from "next/image";
 
-export default function PetCard() {
+export default function MyRequestCard() {
   return (
     <div className="border border-emerald-500 rounded-3xl hover:translate-y-2 transition-translate duration-200">
       <Image
@@ -18,12 +19,7 @@ export default function PetCard() {
           Adation fee: <span className="text-emerald-400">30$</span>
         </p>
         <div className="flex items-center justify gap-5 mt-3">
-          <button className="px-4 py-2 rounded-lg text-white bg-emerald-600 cursor-pointer">
-            See details
-          </button>
-          <button className="px-4 py-2 rounded-lg text-white bg-transparent border border-emerald-500 cursor-pointer">
-            Adapt Now
-          </button>
+            <Chip color="success">Appoved</Chip>
         </div>
       </div>
     </div>

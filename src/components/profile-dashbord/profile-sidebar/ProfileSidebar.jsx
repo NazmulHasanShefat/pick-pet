@@ -17,7 +17,7 @@ export default function ProfileSidebar() {
         <li>
           {" "}
           <Link
-            href={"/profile-dashbord"}
+            href={"/profile-dashbord/add-pet"}
             className="bg-transparent border border-emerald-400 text-emerald-400 block rounded-lg px-3 py-1"
           >
             Add pet
@@ -26,7 +26,7 @@ export default function ProfileSidebar() {
         <li>
           {" "}
           <Link
-            href={"/profile-dashbord"}
+            href={"/profile-dashbord/my-listings"}
             className="bg-transparent border border-emerald-400 text-emerald-400 block rounded-lg px-3 py-1"
           >
             My Listings
