@@ -1,5 +1,5 @@
 "use client";
-import { Check } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -13,15 +13,25 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
 export default function LoginForm() {
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = {};
-    // Convert FormData to plain object
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const userData = Object.fromEntries(formData);
+    
+    const {data, error} = await authClient.signIn.email({
+            name: userData.name,
+            email: userData.email,
+            password: userData.password,
+            image: userData.ProfileImageUrl,
+            callbackURL: "/",
+        })
+    
+        if(error){
+            return console.log("faild to registed", error)
+        }
+        if(data){
+            return console.log("regiterd successfully", data);
+        }
   };
 
   return (

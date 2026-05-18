@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -8,19 +9,34 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignUpForm() {
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData =  Object.fromEntries(formData);
     if(userData.ConfirmPassword !== userData.password){
-        return alert("password are not match")
+        return toast.danger("Confirm password dont match")
     }
-    console.log(userData);
+    // console.log(userData);
+
+    const {data, error} = await authClient.signUp.email({
+        name: userData.name,
+        email: userData.email,
+        password: userData.password,
+        image: userData.ProfileImageUrl,
+    })
+
+    if(error){
+        return console.log("faild to registed", error)
+    }
+    if(data){
+        return console.log("regiterd successfully", data);
+    }
   };
 
   return (
