@@ -2,6 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { GiMoon, GiSun } from "react-icons/gi";
+import { MdOutlineWbSunny } from "react-icons/md";
+import SunIcon from "./SunIcon";
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -12,7 +14,7 @@ export function ThemeSwitch() {
       className="cursor-pointer text-emerald-600 dark:text-white"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {theme === "dark" ? <GiSun size={35} /> : <GiMoon size={35} />}
+      {theme === "dark" ? "light" : "Dark"}
     </button>
   );
 }

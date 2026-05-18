@@ -35,7 +35,7 @@ export default function Navbar() {
         <li>
           {" "}
           <Link
-            href={"/"}
+            href={"/login"}
             className="px-4 flex dark:text-white dark:border-white dark:hover:border-transparent items-center gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
           >
 
