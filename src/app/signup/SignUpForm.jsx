@@ -1,4 +1,5 @@
 "use client";
+import SocialSignUp from "@/components/ui/SocialSignUp";
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
@@ -136,10 +137,7 @@ export default function SignUpForm() {
         <Button type="submit" className={`bg-emerald-600 w-full`}>
           Login Now
         </Button>
-        <Button type="button" className={`bg-transparent border border-emerald-400 w-full`}>
-          <FcGoogle />
-          Continue With Google
-        </Button>
+        <SocialSignUp />
         <p className="text-gray-500">{"Alrady i have an Acount"} <Link href={"/login"} className="text-emerald-400 hover:underline">Login</Link> </p>
       </div>
     </Form>

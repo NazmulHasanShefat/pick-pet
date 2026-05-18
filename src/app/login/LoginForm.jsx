@@ -1,4 +1,5 @@
 "use client";
+import SocialSignUp from "@/components/ui/SocialSignUp";
 import { authClient } from "@/lib/auth-client";
 import {
   Button,
@@ -81,10 +82,7 @@ export default function LoginForm() {
         <Button type="submit" className={`bg-emerald-600 w-full`}>
           Login Now
         </Button>
-        <Button type="button" className={`bg-transparent border border-emerald-400 w-full`}>
-          <FcGoogle />
-          Continue With Google
-        </Button>
+       <SocialSignUp />
         <p className="text-gray-500">{"I don't have any acount"} <Link href={"/signup"} className="text-emerald-400 hover:underline">Signup</Link> </p>
       </div>
     </Form>
