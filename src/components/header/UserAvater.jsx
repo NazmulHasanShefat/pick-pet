@@ -1,6 +1,6 @@
-import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
 import LogoutButton from "./LogoutButton";
+import Link from "next/link";
 
 function isValidUrl(string) {
   try {
@@ -54,11 +54,10 @@ export default function UserAvater({ session }) {
           </div>
         </div>
         <Dropdown.Menu>
-          <Dropdown.Item id="dashboard" textValue="Dashboard">
-            <Label>Dashboard</Label>
-          </Dropdown.Item>
-          <Dropdown.Item id="profile" textValue="Profile">
-            <Label>Profile</Label>
+          <Dropdown.Item id="dashbord" textValue="dashbord">
+          <Link href={`/profile-dashbord`} className="block w-full h-full">
+            Dashbord
+          </Link>
           </Dropdown.Item>
           <Dropdown.Item id="logout" textValue="Logout" variant="danger">
             <LogoutButton />
