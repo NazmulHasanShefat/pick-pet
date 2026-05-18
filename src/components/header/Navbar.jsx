@@ -8,7 +8,7 @@ import { ThemeSwitch } from "../ui/ThemeToggler";
 
 export default function Navbar() {
   return (
-    <nav className="w-full border-2 rounded-b-3xl dark:border-t-0 flex items-center border-emerald-700 justify-between px-5 py-3">
+    <nav className="w-full border-2 rounded-b-3xl dark:border-t-0 flex items-center border-emerald-400 border-t-0 justify-between px-5 py-3">
       <Link href={"/"} className="flex items-center gap-3">
       <Image
         src={`/logo.png`}
@@ -24,7 +24,7 @@ export default function Navbar() {
           {" "}
           <Link
             href={"/"}
-            className="px-4 py-2 flex items-center gap-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-500"
+            className="px-4 py-2 flex items-center gap-2 bg-emerald-600 dark:hover:border-transparent text-white rounded-xl hover:bg-emerald-500"
           >
             <button>
               <MdApps size={15} />
@@ -36,7 +36,7 @@ export default function Navbar() {
           {" "}
           <Link
             href={"/"}
-            className="px-4 flex dark:text-white dark:border-white items-center gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
+            className="px-4 flex dark:text-white dark:border-white dark:hover:border-transparent items-center gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
           >
 
             <button>
@@ -49,7 +49,7 @@ export default function Navbar() {
           {" "}
           <Link
             href={"/"}
-            className="px-4 flex items-center dark:text-white dark:border-white gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
+            className="px-4 flex items-center dark:text-white dark:hover:border-transparent dark:border-white gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
           >
             <button>
             <FaUserPlus size={15} />
