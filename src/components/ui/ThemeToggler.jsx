@@ -8,10 +8,11 @@ export function ThemeSwitch() {
 
   return (
     <button
-     suppressHydrationWarning
-     className="cursor-pointer text-emerald-600 dark:text-white"
-    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-       {theme === "dark" ? <GiSun size={35} /> : <GiMoon size={35} />}
+      suppressHydrationWarning
+      className="cursor-pointer text-emerald-600 dark:text-white"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
+      {theme === "dark" ? <GiSun size={35} /> : <GiMoon size={35} />}
     </button>
   );
 }

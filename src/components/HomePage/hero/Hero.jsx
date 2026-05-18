@@ -4,7 +4,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 export default function Hero() {
   return (
     <section className="items-center md:mt-15 mt-5 flex flex-col-reverse md:flex-row justify-between px-5 w-full max-w-[1340px] mx-auto">
-      <div className="left_aria md:w-1/2 w-full  md:pr-10">
+      <div className="left_aria md:w-1/2 w-full  px-10">
         <h1 className="md:text-7xl font-bold text-2xl">
           Connecting Loving Homes{" "}
           <span className="primary-color">With Happy Pets</span>
