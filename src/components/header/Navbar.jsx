@@ -12,7 +12,7 @@ export default async function Navbar() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  console.log(session)
+  
   return (
     <nav className="w-full border-2 rounded-b-3xl dark:border-t-0 flex items-center border-emerald-400 border-t-0 justify-between px-5 py-3">
       <Link href={"/"} className="flex items-center gap-3">
