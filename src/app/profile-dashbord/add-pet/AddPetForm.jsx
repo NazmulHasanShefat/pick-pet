@@ -103,6 +103,15 @@ export default function AddPetForm() {
           />
           <FieldError />
         </TextField>
+    
+        <TextField isRequired name="adoptionFee" type="number">
+          <Label>adoptionFee</Label>
+          <Input
+            placeholder="100 tk"
+            className={`focus:ring-2 focus:ring-emerald-400`}
+          />
+          <FieldError />
+        </TextField>
 
         {/* select input */}
         <Select

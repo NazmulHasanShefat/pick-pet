@@ -1,12 +1,11 @@
 "use client";
-import SocialSignUp from "@/components/ui/SocialSignUp";
+import { baseURL } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Calendar,
   DateField,
   DatePicker,
-  Description,
   FieldError,
   Form,
   Input,
@@ -15,31 +14,47 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+
 import Link from "next/link";
 
-export default function PetRequestForm() {
+export default function PetRequestForm({ currentDetails }) {
+  const { data } = authClient.useSession();
+  console.log(currentDetails);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData);
-    if (userData.ConfirmPassword !== userData.password) {
-      return toast.danger("Confirm password dont match");
-    }
-    // console.log(userData);
 
-    const { data, error } = await authClient.signUp.email({
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      image: userData.ProfileImageUrl,
-    });
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
 
-    if (error) {
-      return console.log("faild to registed", error);
+    const formattedDate = `${year}-${month}-${day}`;
+
+    console.log(formattedDate);
+
+    const AdoptionData = {
+      adoptionId: currentDetails?.data?._id,
+      requestDate: `${formattedDate}`,
+      adopted: true,
+      status: "pending",
+      ...userData
+    };
+    const res = await fetch(`${baseURL}/send-adoption-request/${currentDetails?.data?._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify(AdoptionData)
+      }
+    );
+    const resData = await res.json();
+    if(resData.success){
+      toast.success("request send successfully")
     }
-    if (data) {
-      return console.log("regiterd successfully", data);
-    }
+    console.log(AdoptionData);
+    console.log(resData)
   };
 
   return (
@@ -47,7 +62,13 @@ export default function PetRequestForm() {
       className="flex md:w-96 mt-5 w-full flex-col gap-4"
       onSubmit={onSubmit}
     >
-      <TextField isRequired name="PetName" type="text">
+      <TextField
+        isReadOnly
+        value={currentDetails?.data?.petName}
+        isRequired
+        name="PetName"
+        type="text"
+      >
         <Label>Pet Name</Label>
         <Input
           placeholder="tommy"
@@ -56,7 +77,13 @@ export default function PetRequestForm() {
         <FieldError />
       </TextField>
 
-      <TextField isRequired name="CustomerName" type="text">
+      <TextField
+        value={data?.user?.name}
+        isReadOnly
+        isRequired
+        name="CustomerName"
+        type="text"
+      >
         <Label>Your Name</Label>
         <Input
           placeholder="Jon due"
@@ -69,6 +96,8 @@ export default function PetRequestForm() {
         isRequired
         name="CustomerEmail"
         type="email"
+        isReadOnly={true}
+        value={`${data?.user?.email}`}
         validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
             return "Please enter a valid email address";
@@ -125,8 +154,8 @@ export default function PetRequestForm() {
       </DatePicker>
       {/* date Pick up Date */}
 
-      <TextField isRequired name="description" type="text">
-        <Label>description</Label>
+      <TextField isRequired={false} name="MessageToOwner" type="text">
+        <Label>Message To Owner</Label>
         <TextArea
           aria-label="Write Your Pet Description"
           className="h-32 w-full focus:ring-2 focus:ring-emerald-400"
@@ -139,12 +168,6 @@ export default function PetRequestForm() {
         <Button type="submit" className={`bg-emerald-600 w-full`}>
           Adopt Now
         </Button>
-        <p className="text-gray-500">
-          {"Alrady i have an Acount"}{" "}
-          <Link href={"/login"} className="text-emerald-400 hover:underline">
-            Login
-          </Link>{" "}
-        </p>
       </div>
     </Form>
   );

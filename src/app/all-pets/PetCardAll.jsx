@@ -32,11 +32,11 @@ export default function PetCardAll({ allPetsPromise }) {
             <p className="text-md mt-1 line-clamp-2"> {list?.description} </p>
             <p className="mt-1 text-base text-gray-400">Dhaka, bangladesh</p>
             <p className="mt-1 text-base text-gray-400">
-              Adation fee: <span className="text-emerald-400">30$</span>
+              Adation fee: <span className="text-emerald-400"> {list?.adoptionFee}tk </span>
             </p>
             <div className="flex items-center flex-col gap-5 mt-3">
               <div className="flex justify-between items-center w-full">
-                <Link href={"/details/2"} className="px-2 flex items-center gap-1 text-xs py-1 rounded-lg text-white bg-emerald-600 cursor-pointer">
+                <Link href={`/details/${list?._id}`} className="px-2 flex items-center gap-1 text-xs py-1 rounded-lg text-white bg-emerald-600 cursor-pointer">
                   <FaRegEye />
                   View Details
                 </Link>

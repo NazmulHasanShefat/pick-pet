@@ -13,7 +13,6 @@ function isValidUrl(string) {
 
 export default function UserAvater({ session }) {
   const ImageIsValid = isValidUrl(session?.user?.image);
-  console.log(ImageIsValid);
   return (
     <Dropdown>
       <Dropdown.Trigger className="rounded-full">

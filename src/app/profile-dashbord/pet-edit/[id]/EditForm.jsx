@@ -18,10 +18,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
-export default function EditForm({ GetEditablePet,id }) {
-    const pet = use(GetEditablePet);
-    const petData = pet?.data;
-    console.log(petData)
+export default function EditForm({ GetEditablePet, id }) {
+  const pet = use(GetEditablePet);
+  const petData = pet?.data;
+  console.log(petData);
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function EditForm({ GetEditablePet,id }) {
         router.push("/profile-dashbord/my-listings");
         router.refresh();
       }
-     
+
       console.log(showResult);
     } catch (error) {
       console.log(error);
@@ -54,7 +54,12 @@ export default function EditForm({ GetEditablePet,id }) {
   return (
     <Form className="w-full" onSubmit={onSubmit}>
       <div className="grid mt-5 w-full grid-cols-1 md:grid-cols-2 gap-4">
-        <TextField isRequired name="petName" type="text" defaultValue={`${petData?.petName}`}>
+        <TextField
+          isRequired
+          name="petName"
+          type="text"
+          defaultValue={`${petData?.petName}`}
+        >
           <Label>Pet Name</Label>
           <Input
             placeholder="tommy"
@@ -63,7 +68,12 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="Species" type="text" defaultValue={petData?.Species}>
+        <TextField
+          isRequired
+          name="Species"
+          type="text"
+          defaultValue={petData?.Species}
+        >
           <Label>Pet Species</Label>
           <Input
             placeholder="Dog/Cat/Bird/etc."
@@ -72,7 +82,12 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="PetImageUrl" type="text" defaultValue={petData?.PetImageUrl}>
+        <TextField
+          isRequired
+          name="PetImageUrl"
+          type="text"
+          defaultValue={petData?.PetImageUrl}
+        >
           <Label>Pet Photo Url</Label>
           <Input
             placeholder="https://myhosting.com/photo.jpg"
@@ -81,7 +96,12 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="Breed" type="text" defaultValue={petData?.Breed}>
+        <TextField
+          isRequired
+          name="Breed"
+          type="text"
+          defaultValue={petData?.Breed}
+        >
           <Label>Pet Breed</Label>
           <Input
             placeholder="French Bulldog / Pug / Golden Retriever / etc."
@@ -90,7 +110,12 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="Age" type="text" defaultValue={petData?.Age}>
+        <TextField
+          isRequired
+          name="Age"
+          type="text"
+          defaultValue={petData?.Age}
+        >
           <Label>Pet Age</Label>
           <Input
             placeholder="1yr / 1mo / 100day"
@@ -99,10 +124,24 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="location" type="text" defaultValue={petData?.location}>
+        <TextField
+          isRequired
+          name="location"
+          type="text"
+          defaultValue={petData?.location}
+        >
           <Label>Location</Label>
           <Input
             placeholder="Dhaka Bangladesh"
+            className={`focus:ring-2 focus:ring-emerald-400`}
+          />
+          <FieldError />
+        </TextField>
+
+        <TextField isRequired name="adoptionFee" type="number" defaultValue={`${petData?.adoptionFee}`}>
+          <Label>adoptionFee</Label>
+          <Input
+            placeholder="100 tk"
             className={`focus:ring-2 focus:ring-emerald-400`}
           />
           <FieldError />
@@ -233,7 +272,12 @@ export default function EditForm({ GetEditablePet,id }) {
           <FieldError />
         </TextField>
 
-        <TextField isRequired name="description" type="text" defaultValue={`${petData?.description}`}>
+        <TextField
+          isRequired
+          name="description"
+          type="text"
+          defaultValue={`${petData?.description}`}
+        >
           <Label>description</Label>
           <TextArea
             aria-label="Write Your Pet Description"
