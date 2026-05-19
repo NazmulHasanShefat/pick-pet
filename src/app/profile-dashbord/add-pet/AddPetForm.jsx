@@ -2,7 +2,7 @@
 import { baseURL } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import { ChevronsExpandVertical } from "@gravity-ui/icons";
-import { ListBox, Select } from "@heroui/react";
+import { ListBox, Select, TextArea } from "@heroui/react";
 import {
   Button,
   Description,
@@ -27,20 +27,19 @@ export default function AddPetForm() {
       const result = await fetch(`${baseURL}/create-pet_details`, {
         method: "POST",
         headers: {
-          "Content-Type":"application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(petData)
-      })
+        body: JSON.stringify(petData),
+      });
       const showResult = await result.json();
-      if(showResult.success === true){
+      if (showResult.success === true) {
         toast.success("Added successfully");
         router.push("/profile-dashbord/my-listings");
         router.refresh();
       }
       console.log(showResult);
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -105,7 +104,12 @@ export default function AddPetForm() {
         </TextField>
 
         {/* select input */}
-        <Select placeholder="Select Gender" name="gender" defaultValue={`Male`} isRequired>
+        <Select
+          placeholder="Select Gender"
+          name="gender"
+          defaultValue={`Male`}
+          isRequired
+        >
           <Label>Pet Gender</Label>
           <Select.Trigger>
             <Select.Value />
@@ -134,7 +138,6 @@ export default function AddPetForm() {
           defaultValue={`Excellent`}
           name="halth_Status"
           isRequired
-
         >
           <Label>Health Status</Label>
           <Select.Trigger>
@@ -204,15 +207,6 @@ export default function AddPetForm() {
         </Select>
         {/* select input Vaccination Status*/}
 
-        <TextField isRequired name="description" type="text">
-          <Label>description</Label>
-          <Input
-            placeholder="Description..."
-            className={`focus:ring-2 focus:ring-emerald-400`}
-          />
-          <FieldError />
-        </TextField>
-
         <TextField
           isRequired
           name="Owner_Email"
@@ -228,8 +222,19 @@ export default function AddPetForm() {
         >
           <Label>Owner Email</Label>
           <Input
-            placeholder={isPending ? "loding...": "jone@gmail.com"}
+            placeholder={isPending ? "loding..." : "jone@gmail.com"}
             className={`focus:ring-2 focus:ring-emerald-400`}
+          />
+          <FieldError />
+        </TextField>
+
+        <TextField isRequired name="description" type="text">
+          <Label>description</Label>
+          <TextArea
+            aria-label="Write Your Pet Description"
+            name=""
+            className="h-32 w-full focus:ring-2 focus:ring-emerald-400"
+            placeholder="Write Your Pet Description..."
           />
           <FieldError />
         </TextField>
