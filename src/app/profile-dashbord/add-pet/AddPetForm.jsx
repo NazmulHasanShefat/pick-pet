@@ -37,6 +37,7 @@ export default function AddPetForm() {
         router.push("/profile-dashbord/my-listings");
         router.refresh();
       }
+     
       console.log(showResult);
     } catch (error) {
       console.log(error);
@@ -232,7 +233,7 @@ export default function AddPetForm() {
           <Label>description</Label>
           <TextArea
             aria-label="Write Your Pet Description"
-            name=""
+         
             className="h-32 w-full focus:ring-2 focus:ring-emerald-400"
             placeholder="Write Your Pet Description..."
           />

@@ -1,17 +1,34 @@
 "use client";
 
+import { baseURL } from "@/context/baseUrl";
 import { Rocket } from "@gravity-ui/icons";
-import { Button, Modal } from "@heroui/react";
+import { Button, Modal, toast } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
-export function DeleteButton() {
+export function DeleteButton({deleteId}) {
+   const router = useRouter();
   const sizes = ["Delete"];
-  const handleDelete = async ()=>{
-    console.log("deleted")
+  const handleDelete = async (id)=>{
+    try {
+      const res = await fetch(`${baseURL}/delete-pet/${id}`,{
+        method: "DELETE",
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      const result = await res.json();
+      if(result.success === true){
+        router.refresh();
+        toast.success("deleted successfully");
+      }
+      console.log(result);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <div className="flex flex-wrap gap-4">
-   
         <Modal key={"sm"}>
           <Button variant="danger">
            Delete
@@ -37,7 +54,7 @@ export function DeleteButton() {
                   <Button slot="close" variant="secondary" className={`text-emerald-500`}>
                     Cancel
                   </Button>
-                  <Button slot="close" variant="danger" onClick={handleDelete}>Delete</Button>
+                  <Button slot="close" variant="danger" onClick={()=>{handleDelete(deleteId)}}>Delete</Button>
                 </Modal.Footer>
               </Modal.Dialog>
             </Modal.Container>

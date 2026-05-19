@@ -45,7 +45,7 @@ export default function MyListCart({ myListPromise }) {
                   <MdDelete />
                   delete
                 </button> */}
-                <DeleteButton />
+                <DeleteButton deleteId={list?._id}/>
               </div>
 
               <div className="flex justify-between items-center w-full">
