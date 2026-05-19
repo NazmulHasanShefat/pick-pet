@@ -1,7 +1,6 @@
 "use client";
 import SocialSignUp from "@/components/ui/SocialSignUp";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -13,7 +12,6 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
 
 export default function SignUpForm() {
   const onSubmit = async (e) => {
