@@ -1,4 +1,5 @@
 "use client";
+import { baseURL } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import { ChevronsExpandVertical } from "@gravity-ui/icons";
 import { ListBox, Select } from "@heroui/react";
@@ -12,18 +13,39 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AddPetForm() {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const userData = Object.fromEntries(formData);
-    if (userData.ConfirmPassword !== userData.password) {
-      return toast.danger("Confirm password dont match");
+    const petData = Object.fromEntries(formData);
+    try {
+      const result = await fetch(`${baseURL}/create-pet_details`, {
+        method: "POST",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify(petData)
+      })
+      const showResult = await result.json();
+      if(showResult.success === true){
+        toast.success("Added successfully");
+        router.push("/profile-dashbord/my-listings");
+        router.refresh();
+      }
+      console.log(showResult);
+      
+    } catch (error) {
+      console.log(error)
     }
-    console.log(userData);
   };
+
+  const { data: session, isPending, error } = authClient.useSession();
+  const user = session?.user;
 
   return (
     <Form className="w-full" onSubmit={onSubmit}>
@@ -195,6 +217,8 @@ export default function AddPetForm() {
           isRequired
           name="Owner_Email"
           type="email"
+          isReadOnly={true}
+          value={user?.email}
           validate={(value) => {
             if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
               return "Please enter a valid email address";
@@ -204,7 +228,7 @@ export default function AddPetForm() {
         >
           <Label>Owner Email</Label>
           <Input
-            placeholder="john@example.com"
+            placeholder={isPending ? "loding...": "jone@gmail.com"}
             className={`focus:ring-2 focus:ring-emerald-400`}
           />
           <FieldError />
