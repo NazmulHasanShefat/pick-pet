@@ -1,0 +1,23 @@
+import { baseURL } from "@/context/baseUrl";
+import EditForm from "./EditForm";
+import { Suspense } from "react";
+
+export default async function page({ params }) {
+  const { id } = await params;
+  const GetEditablePet = fetch(`${baseURL}/single-pet/${id}`)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+
+  console.log(GetEditablePet);
+  return (
+    <section className="py-10">
+      <h1 className="text-2xl">Edit Your Pet</h1>
+      <p className="text-gray-500">Carefully edit you pet details</p>
+      <div className="w-full px-5 flex items-center justify-center">
+        <Suspense fallback={<h1>Loding...</h1>}>
+          <EditForm GetEditablePet={GetEditablePet} id={id}/>
+        </Suspense>
+      </div>
+    </section>
+  );
+}

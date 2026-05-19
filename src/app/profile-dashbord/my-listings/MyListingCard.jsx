@@ -5,6 +5,7 @@ import { BiEdit } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa6";
 import { MdDelete, MdOutlineRequestPage } from "react-icons/md";
 import { DeleteButton } from "./DeleteButton";
+import Link from "next/link";
 
 export default function MyListCart({ myListPromise }) {
   const myList = use(myListPromise);
@@ -36,16 +37,19 @@ export default function MyListCart({ myListPromise }) {
             </p>
             <div className="flex items-center flex-col gap-5 mt-3">
               <div className="flex justify-between items-center w-full">
-                <button className="px-2 flex items-center gap-2 text-xs py-1 rounded-lg text-white bg-emerald-600 cursor-pointer">
+                <Link
+                  href={`/profile-dashbord/pet-edit/${list?._id}`}
+                  className="px-2 flex items-center gap-2 text-xs py-1 rounded-lg text-white bg-emerald-600 cursor-pointer"
+                >
                   <BiEdit />
                   Edit
-                </button>
+                </Link>
 
                 {/* <button className="px-2 flex items-center gap-2 py-1 text-xs rounded-lg bg-red-500 text-white border border-red-500 cursor-pointer">
                   <MdDelete />
                   delete
                 </button> */}
-                <DeleteButton deleteId={list?._id}/>
+                <DeleteButton deleteId={list?._id} />
               </div>
 
               <div className="flex justify-between items-center w-full">
