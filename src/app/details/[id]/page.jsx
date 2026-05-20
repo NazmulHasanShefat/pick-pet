@@ -25,9 +25,9 @@ export default async function PetDetailsPage({ params }) {
   };
 
   const currentDetails = await GetCurrentDetail();
-  
 
   const OwnerEmail = currentDetails?.data?.Owner_Email;
+  const adoptionStatus = currentDetails?.data?.adoptedStatus;
 
   return (
     <section className="px-5 mt-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-2">
@@ -42,7 +42,7 @@ export default async function PetDetailsPage({ params }) {
           />
         </div>
         <div className="mt-10 w-full">
-          <PetDetails currentDetails={currentDetails}/>
+          <PetDetails currentDetails={currentDetails} />
         </div>
       </div>
       <div className="md:col-span-6">
@@ -50,16 +50,33 @@ export default async function PetDetailsPage({ params }) {
         <p className="text-gray-500">
           Fill out the form and owner well recive your request{" "}
         </p>
-        {session?.user?.email === OwnerEmail ? (
+
+        {adoptionStatus === true ? (
           <div className="mt-10">
             <div className="w-full mt-10 flex text-red-500 items-center justify-center">
-              <MdOutlineDangerous size={100}/>
+              <MdOutlineDangerous size={100} />
             </div>
-            <h2 className="text-2xl text-center">You Can’t Adopt Your Own Pet</h2>
-            <p className="text-gray-500 text-center">This pet was added by you, so adoption requests are not allowed for your own listing. You can manage or update your pet information from your dashboard.</p>
+            <h2 className="text-2xl text-center">You Can’t adopt</h2>
+            <p className="text-gray-500 text-center">
+              This pet was alrady adopted
+            </p>
+          </div>
+        ) : session?.user?.email === OwnerEmail ? (
+          <div className="mt-10">
+            <div className="w-full mt-10 flex text-red-500 items-center justify-center">
+              <MdOutlineDangerous size={100} />
+            </div>
+            <h2 className="text-2xl text-center">
+              You Can’t Adopt Your Own Pet
+            </h2>
+            <p className="text-gray-500 text-center">
+              This pet was added by you, so adoption requests are not allowed
+              for your own listing. You can manage or update your pet
+              information from your dashboard.
+            </p>
           </div>
         ) : (
-          <PetRequestForm currentDetails={currentDetails}/>
+          <PetRequestForm currentDetails={currentDetails} />
         )}
       </div>
     </section>

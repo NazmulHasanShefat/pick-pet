@@ -14,9 +14,14 @@ export default function MyListCart({ myListPromise }) {
   const {data:session} = authClient.useSession();
   const myList = use(myListPromise);
   const ListInfo = myList?.data;
- 
-  return ListInfo.length !== 0 ? (
-    ListInfo.map((list, index) => {
+  console.log(ListInfo.length)
+
+  return ListInfo.length === 0 && !ListInfo ? (
+      <div className="col-span-4 flex text-center">
+      <h1>Data not found</h1>
+    </div>   
+  ) : (
+     ListInfo.map((list, index) => {
       const isValid = CheckImageUrl(list?.PetImageUrl);
       if(list?.Owner_Email === session?.user?.email){
         return (
@@ -72,13 +77,6 @@ export default function MyListCart({ myListPromise }) {
         );
 
       }
-
-
-
     })
-  ) : (
-    <div className="col-span-4 flex text-center">
-      <h1>Data not found</h1>
-    </div>
   );
 }

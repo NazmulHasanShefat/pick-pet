@@ -2,6 +2,7 @@ import Image from "next/image";
 import PetCard from "./petCard";
 import { baseURL } from "@/context/baseUrl";
 import { Suspense } from "react";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 
 export default function RecentPets() {
   const allPetsPromise = fetch(`${baseURL}/all-pets`).then((res) => res.json());
@@ -13,7 +14,7 @@ export default function RecentPets() {
       <p className="text-center mt-3 text-gray-500">
         Our latest recent updates for you
       </p>
-      <Suspense fallback={<h1>loding...</h1>}>
+      <Suspense fallback={<SkeletonCard />}>
         <div className="petCards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-5 md:mt-10">
           <PetCard allPetsPromise={allPetsPromise}/>
         </div>

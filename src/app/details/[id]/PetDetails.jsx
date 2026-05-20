@@ -6,7 +6,7 @@ import { MdHealthAndSafety, MdOutlinePets } from "react-icons/md";
 import { TbCategoryFilled, TbVaccine } from "react-icons/tb";
 
 export default function PetDetails({ currentDetails }) {
-
+  console.log(currentDetails)
   return (
     <section className="w-full">
       <div className="flex justify-between pb-5 px-10 items-center">

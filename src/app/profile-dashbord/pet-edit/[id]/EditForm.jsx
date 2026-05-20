@@ -27,11 +27,14 @@ export default function EditForm({ GetEditablePet, id }) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const petData = Object.fromEntries(formData);
+    const {data:myToken} = await authClient.token()
+    
     try {
       const result = await fetch(`${baseURL}/update-pet/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${myToken?.token}`
         },
         body: JSON.stringify(petData),
       });
@@ -41,8 +44,10 @@ export default function EditForm({ GetEditablePet, id }) {
         router.push("/profile-dashbord/my-listings");
         router.refresh();
       }
-
-      console.log(showResult);
+      if(showResult.success === false){
+        toast.danger(showResult.message)
+      }
+      
     } catch (error) {
       console.log(error);
     }
