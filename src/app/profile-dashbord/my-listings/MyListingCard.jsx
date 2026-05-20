@@ -16,7 +16,7 @@ export default function MyListCart({ myListPromise }) {
   const ListInfo = myList?.data;
   console.log(ListInfo.length)
 
-  return ListInfo.length === 0 && !ListInfo ? (
+  return ListInfo.length === 0 || !ListInfo ? (
       <div className="col-span-4 flex text-center">
       <h1>Data not found</h1>
     </div>   
@@ -75,7 +75,6 @@ export default function MyListCart({ myListPromise }) {
             </div>
           </div>
         );
-
       }
     })
   );

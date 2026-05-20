@@ -1,12 +1,14 @@
+"use client"
 import { FaTransgenderAlt } from "react-icons/fa";
-import { FaCat, FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 import { IoMdStopwatch } from "react-icons/io";
 import { LiaTransgenderAltSolid } from "react-icons/lia";
 import { MdHealthAndSafety, MdOutlinePets } from "react-icons/md";
 import { TbCategoryFilled, TbVaccine } from "react-icons/tb";
 
+
 export default function PetDetails({ currentDetails }) {
-  console.log(currentDetails)
+  
   return (
     <section className="w-full">
       <div className="flex justify-between pb-5 px-10 items-center">

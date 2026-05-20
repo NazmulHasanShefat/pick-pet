@@ -56,6 +56,7 @@ export default function PetRequestForm({ currentDetails }) {
       const resData = await res.json();
       if (resData.success) {
         toast.success("request send successfully");
+        router.refresh();
       } else {
         toast.danger(resData.message);
       }

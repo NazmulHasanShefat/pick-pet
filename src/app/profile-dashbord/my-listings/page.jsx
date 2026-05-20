@@ -1,9 +1,14 @@
 import { Suspense } from "react";
 import MyListCart from "./MyListingCard";
 import { baseURL } from "@/context/baseUrl";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-export default function MyListingPage() {
-  const myListPromise = fetch(`${baseURL}/all-pets`).then((res) => res.json());
+export default async function MyListingPage() {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+  const myListPromise = fetch(`${baseURL}/my-listing/${session?.user?.email}`).then((res) => res.json());
   return (
     <section className="px-5 py-10">
       <h1 className="text-2xl">My Listing</h1>
