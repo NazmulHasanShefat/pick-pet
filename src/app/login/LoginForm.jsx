@@ -9,6 +9,7 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import Link from "next/link";
 
@@ -28,6 +29,7 @@ export default function LoginForm() {
         })
     
         if(error){
+            toast.danger(error.message)
             return console.log("faild to registed", error)
         }
         if(data){

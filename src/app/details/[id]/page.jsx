@@ -4,6 +4,7 @@ import PetDetails from "./PetDetails";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { baseURL } from "@/context/baseUrl";
+import { MdOutlineDangerous } from "react-icons/md";
 
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;
@@ -51,6 +52,9 @@ export default async function PetDetailsPage({ params }) {
         </p>
         {session?.user?.email === OwnerEmail ? (
           <div className="mt-10">
+            <div className="w-full mt-10 flex text-red-500 items-center justify-center">
+              <MdOutlineDangerous size={100}/>
+            </div>
             <h2 className="text-2xl text-center">You Can’t Adopt Your Own Pet</h2>
             <p className="text-gray-500 text-center">This pet was added by you, so adoption requests are not allowed for your own listing. You can manage or update your pet information from your dashboard.</p>
           </div>
