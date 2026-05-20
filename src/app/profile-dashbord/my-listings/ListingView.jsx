@@ -1,4 +1,6 @@
 "use client";
+
+import { Rocket } from "@gravity-ui/icons";
 import { Button, Modal } from "@heroui/react";
 import { FaTransgenderAlt } from "react-icons/fa";
 import { FaLocationDot, FaRegEye } from "react-icons/fa6";
@@ -7,7 +9,9 @@ import { LiaTransgenderAltSolid } from "react-icons/lia";
 import { MdHealthAndSafety, MdOutlinePets } from "react-icons/md";
 import { TbCategoryFilled, TbVaccine } from "react-icons/tb";
 
-export function ViewModal({ currentDetails }) {
+
+
+export function ListingView({ currentDetails }) {
   return (
     <Modal>
       <Button

@@ -3,11 +3,11 @@ import { CheckImageUrl } from "@/context/functions";
 import Image from "next/image";
 import { use } from "react";
 import { BiEdit } from "react-icons/bi";
-import { FaRegEye } from "react-icons/fa6";
 import { MdOutlineRequestPage } from "react-icons/md";
 import { DeleteButton } from "./DeleteButton";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { ListingView } from "./ListingView";
 
 
 export default function MyListCart({ myListPromise }) {
@@ -52,20 +52,11 @@ export default function MyListCart({ myListPromise }) {
                     <BiEdit />
                     Edit
                   </Link>
-  
-                  {/* <button className="px-2 flex items-center gap-2 py-1 text-xs rounded-lg bg-red-500 text-white border border-red-500 cursor-pointer">
-                    <MdDelete />
-                    delete
-                  </button> */}
                   <DeleteButton deleteId={list?._id} />
                 </div>
   
                 <div className="flex justify-between items-center w-full">
-                  <button className="px-2 flex items-center gap-2 text-xs py-1 rounded-lg text-white bg-emerald-600 cursor-pointer">
-                    <FaRegEye />
-                    View
-                  </button>
-  
+                  <ListingView currentDetails={list}/>
                   <button className="px-2 flex items-center gap-2 py-1 text-xs rounded-lg text-white bg-transparent border border-emerald-500 cursor-pointer">
                     <MdOutlineRequestPage />
                     Requests

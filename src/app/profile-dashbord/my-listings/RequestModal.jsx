@@ -1,4 +1,6 @@
 "use client";
+
+import { Rocket } from "@gravity-ui/icons";
 import { Button, Modal } from "@heroui/react";
 import { FaTransgenderAlt } from "react-icons/fa";
 import { FaLocationDot, FaRegEye } from "react-icons/fa6";
@@ -7,7 +9,9 @@ import { LiaTransgenderAltSolid } from "react-icons/lia";
 import { MdHealthAndSafety, MdOutlinePets } from "react-icons/md";
 import { TbCategoryFilled, TbVaccine } from "react-icons/tb";
 
-export function ViewModal({ currentDetails }) {
+
+
+export function RequestModal({ currentDetails }) {
   return (
     <Modal>
       <Button
@@ -15,7 +19,7 @@ export function ViewModal({ currentDetails }) {
         className={`px-2 py-1 text-white rounded-lg text-xs cursor-pointer hover:opacity-80 bg-emerald-700 h-max`}
       >
         <FaRegEye className="my-0"/>
-        View
+        Request
       </Button>
       <Modal.Backdrop>
         <Modal.Container>

@@ -33,7 +33,7 @@ export function DeleteButton({deleteId}) {
   return (
     <div className="flex flex-wrap gap-4">
         <Modal key={"sm"}>
-          <Button variant="danger">
+          <Button variant="danger" className={`px-2 py-1 text-white rounded-lg text-xs cursor-pointer hover:opacity-80 bg-red-500 h-max`}>
            Delete
           </Button>
           <Modal.Backdrop>
