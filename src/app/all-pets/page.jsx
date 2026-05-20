@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function AllPetsPage() {
   const allPetsPromise = fetch(`${baseURL}/all-pets`).then((res) => res.json());
-
+  
   return (
     <section className="w-full max-w-7xl mx-auto px-5 mt-5">
       <h1 className="text-2xl md:text-3xl font-bold">Meet Our Adorable Pets</h1>

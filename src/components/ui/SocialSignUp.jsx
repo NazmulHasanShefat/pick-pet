@@ -18,7 +18,7 @@ export default function SocialSignUp() {
     <Button
       onClick={handleSocialSignUp}
       type="button"
-      className={`bg-transparent border border-emerald-400 w-full`}
+      className={`bg-transparent dark:text-white border border-emerald-400 w-full`}
     >
       <FcGoogle />
       Continue With Google
