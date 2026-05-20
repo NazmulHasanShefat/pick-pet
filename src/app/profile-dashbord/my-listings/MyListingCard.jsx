@@ -8,6 +8,7 @@ import { DeleteButton } from "./DeleteButton";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { ListingView } from "./ListingView";
+import { RequestModal } from "./RequestModal";
 
 
 export default function MyListCart({ myListPromise }) {
@@ -57,10 +58,11 @@ export default function MyListCart({ myListPromise }) {
   
                 <div className="flex justify-between items-center w-full">
                   <ListingView currentDetails={list}/>
-                  <button className="px-2 flex items-center gap-2 py-1 text-xs rounded-lg text-white bg-transparent border border-emerald-500 cursor-pointer">
+                  {/* <button className="px-2 flex items-center gap-2 py-1 text-xs rounded-lg text-white bg-transparent border border-emerald-500 cursor-pointer">
                     <MdOutlineRequestPage />
                     Requests
-                  </button>
+                  </button> */}
+                  <RequestModal currentDetails={list}/>
                 </div>
               </div>
             </div>
