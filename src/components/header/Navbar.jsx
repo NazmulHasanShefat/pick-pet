@@ -7,6 +7,7 @@ import { ThemeSwitch } from "../ui/ThemeToggler";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import UserAvater from "./UserAvater";
+import LinkWithStatus from "../ui/LinkWithStatus";
 
 export default async function Navbar() {
   const session = await auth.api.getSession({
@@ -30,55 +31,55 @@ export default async function Navbar() {
       <ul className="flex items-center gap-5">
         <li>
           {" "}
-          <Link
-            href={"/all-pets"}
-            className="px-4 py-2 flex items-center gap-2 bg-emerald-600 dark:hover:border-transparent text-white rounded-xl hover:bg-emerald-500"
+          <LinkWithStatus
+            href={"/"}
+            className="px-4 py-2 flex items-center gap-2"
           >
             <button>
               <MdApps size={15} />
             </button>
            Home
-          </Link>{" "}
+          </LinkWithStatus>{" "}
         </li>
      
         <li>
           {" "}
-          <Link
+          <LinkWithStatus
             href={"/all-pets"}
-            className="px-4 py-2 flex items-center gap-2 bg-emerald-600 dark:hover:border-transparent text-white rounded-xl hover:bg-emerald-500"
+            className="px-4 py-2 flex items-center gap-2"
           >
             <button>
               <MdApps size={15} />
             </button>
             All pets
-          </Link>{" "}
+          </LinkWithStatus>{" "}
         </li>
 
         {!session ? (
           <>
             <li>
               {" "}
-              <Link
+              <LinkWithStatus
                 href={"/login"}
-                className="px-4 flex dark:text-white dark:border-white dark:hover:border-transparent items-center gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
+                className="px-4 py-2 flex items-center gap-2"
               >
                 <button>
                   <LuLogIn size={15} />
                 </button>
                 Login
-              </Link>{" "}
+              </LinkWithStatus>{" "}
             </li>
             <li>
               {" "}
-              <Link
+              <LinkWithStatus
                 href={"/signup"}
-                className="px-4 flex items-center dark:text-white dark:hover:border-transparent dark:border-white gap-2 py-2 bg-transparent border-2 border-emerald-600 hover:text-white hover:border-transparent text-emerald-600 rounded-xl hover:bg-emerald-500"
+                className="px-4 py-2 flex items-center gap-2"
               >
                 <button>
                   <FaUserPlus size={15} />
                 </button>
                 SignUp
-              </Link>{" "}
+              </LinkWithStatus>{" "}
             </li>
           </>
         ) : (
