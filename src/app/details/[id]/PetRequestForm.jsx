@@ -15,13 +15,15 @@ import {
   toast,
 } from "@heroui/react";
 
-import Link from "next/link";
+
+import { useRouter } from "next/navigation";
 
 export default function PetRequestForm({ currentDetails }) {
+  const router = useRouter();
   const { data } = authClient.useSession();
-  console.log(currentDetails);
   const onSubmit = async (e) => {
     e.preventDefault();
+    if(data){
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData);
 
@@ -41,6 +43,7 @@ export default function PetRequestForm({ currentDetails }) {
       status: "pending",
       ...userData
     };
+   
     const res = await fetch(`${baseURL}/send-adoption-request/${currentDetails?.data?._id}`, {
         method: "PATCH",
         headers: {
@@ -53,8 +56,9 @@ export default function PetRequestForm({ currentDetails }) {
     if(resData.success){
       toast.success("request send successfully")
     }
-    console.log(AdoptionData);
-    console.log(resData)
+    }else{
+      return router.push("/login")
+    }
   };
 
   return (
@@ -97,7 +101,7 @@ export default function PetRequestForm({ currentDetails }) {
         name="CustomerEmail"
         type="email"
         isReadOnly={true}
-        value={`${data?.user?.email}`}
+        value={`${data?.user?.email || ""}`}
         validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
             return "Please enter a valid email address";

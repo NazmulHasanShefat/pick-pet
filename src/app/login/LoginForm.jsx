@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
+
 
 export default function LoginForm() {
   const onSubmit = async (e) => {
@@ -31,7 +31,7 @@ export default function LoginForm() {
             return console.log("faild to registed", error)
         }
         if(data){
-            return console.log("regiterd successfully", data);
+            return console.log("login successfull", data);
         }
   };
 
