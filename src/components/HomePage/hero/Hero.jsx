@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 export default function Hero() {
@@ -13,12 +14,12 @@ export default function Hero() {
           Our platform helps homeless pets find caring families through a
           simple, safe, and heartwarming adoption experience
         </p>
-        <button className="bg-emerald-700 flex items-center gap-3 hover:scale-110 transition-scale duration-200 px-4 py-2 rounded-xl mt-5 cursor-pointer text-white">
+        <Link href={"/all-pets"} className="bg-emerald-700 w-max flex items-center gap-3 hover:scale-110 transition-scale duration-200 px-4 py-2 rounded-xl mt-5 cursor-pointer text-white">
           Adapt Now
           <span>
-          <FaArrowUpRightFromSquare />
+            <FaArrowUpRightFromSquare />
           </span>
-        </button>
+        </Link>
       </div>
       <div className="right_aria md:w-1/2 w-full ">
         <Image

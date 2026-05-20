@@ -37,6 +37,19 @@ export default async function Navbar() {
             <button>
               <MdApps size={15} />
             </button>
+           Home
+          </Link>{" "}
+        </li>
+     
+        <li>
+          {" "}
+          <Link
+            href={"/all-pets"}
+            className="px-4 py-2 flex items-center gap-2 bg-emerald-600 dark:hover:border-transparent text-white rounded-xl hover:bg-emerald-500"
+          >
+            <button>
+              <MdApps size={15} />
+            </button>
             All pets
           </Link>{" "}
         </li>

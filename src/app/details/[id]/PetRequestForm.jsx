@@ -15,49 +15,52 @@ import {
   toast,
 } from "@heroui/react";
 
-
 import { useRouter } from "next/navigation";
 
 export default function PetRequestForm({ currentDetails }) {
   const router = useRouter();
   const { data } = authClient.useSession();
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(data){
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData);
+    if (data) {
+      const { data: tokenData } = await authClient.token();
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
 
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+      const formattedDate = `${year}-${month}-${day}`;
 
-    const formattedDate = `${year}-${month}-${day}`;
+      const AdoptionData = {
+        adoptionId: currentDetails?.data?._id,
+        requestDate: `${formattedDate}`,
+        adopted: true,
+        status: "pending",
+        ...userData,
+      };
 
-    console.log(formattedDate);
-
-    const AdoptionData = {
-      adoptionId: currentDetails?.data?._id,
-      requestDate: `${formattedDate}`,
-      adopted: true,
-      status: "pending",
-      ...userData
-    };
-   
-    const res = await fetch(`${baseURL}/send-adoption-request/${currentDetails?.data?._id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type":"application/json",
+      const res = await fetch(
+        `${baseURL}/send-adoption-request/${currentDetails?.data?._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`
+          },
+          body: JSON.stringify(AdoptionData),
         },
-        body: JSON.stringify(AdoptionData)
+      );
+      const resData = await res.json();
+      if (resData.success) {
+        toast.success("request send successfully");
+      } else {
+        toast.danger(resData.message);
       }
-    );
-    const resData = await res.json();
-    if(resData.success){
-      toast.success("request send successfully")
-    }
-    }else{
-      return router.push("/login")
+    } else {
+      return router.push("/login");
     }
   };
 
@@ -119,7 +122,7 @@ export default function PetRequestForm({ currentDetails }) {
 
       {/* date Pick up Date */}
       <DatePicker className="w-full" name="PickUpDate">
-        <Label>Date</Label>
+        <Label>Pick up Date</Label>
         <DateField.Group fullWidth>
           <DateField.Input>
             {(segment) => <DateField.Segment segment={segment} />}

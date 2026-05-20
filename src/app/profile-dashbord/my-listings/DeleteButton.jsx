@@ -1,19 +1,22 @@
 "use client";
 
 import { baseURL } from "@/context/baseUrl";
+import { authClient } from "@/lib/auth-client";
 import { Rocket } from "@gravity-ui/icons";
 import { Button, Modal, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 export function DeleteButton({deleteId}) {
    const router = useRouter();
-  const sizes = ["Delete"];
+
   const handleDelete = async (id)=>{
+    const {data:myToken} = await authClient.token();
     try {
       const res = await fetch(`${baseURL}/delete-pet/${id}`,{
         method: "DELETE",
         headers:{
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          authorization: `Bearer ${myToken?.token}`
         }
       })
       const result = await res.json();
