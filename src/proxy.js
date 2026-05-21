@@ -14,9 +14,7 @@ export async function proxy(request) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
 }
+
 export const config = {
-  matcher: ['/profile-dashbord']
+  matcher: ['/profile-dashbord/:path', '/details/:id*']
 }
-// export const config = {
-//   matcher: ['/details/:detailsId*']
-// }

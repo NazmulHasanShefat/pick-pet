@@ -9,12 +9,11 @@ import { useState } from "react";
 import { iso } from "better-auth";
 
 
-export default function MobileMenu(session) {
+export default function MobileMenu({session}) {
     const [isOpen, setOpen] = useState(false)
     const handleMenuToggle = ()=>{
         setOpen((prev)=> !prev)
     }
-  
     return (
     <div className="md:hidden">
       <MdMenuOpen onClick={handleMenuToggle} size={35} className="md:hidden" />
@@ -24,7 +23,7 @@ export default function MobileMenu(session) {
           <div className="w-full flex justify-end">
           <AiOutlineCloseSquare onClick={handleMenuToggle} size={35} className="float-end"/>
           </div>
-          <li className="mt-10">
+          <li className="mt-10" onClick={handleMenuToggle}>
             {" "}
             <LinkWithStatus
               href={"/"}
@@ -37,7 +36,7 @@ export default function MobileMenu(session) {
             </LinkWithStatus>{" "}
           </li>
 
-          <li>
+          <li onClick={handleMenuToggle}>
             {" "}
             <LinkWithStatus
               href={"/all-pets"}
@@ -52,7 +51,7 @@ export default function MobileMenu(session) {
 
           {!session ? (
             <>
-              <li>
+              <li onClick={handleMenuToggle}>
                 {" "}
                 <LinkWithStatus
                   href={"/login"}
@@ -64,7 +63,7 @@ export default function MobileMenu(session) {
                   Login
                 </LinkWithStatus>{" "}
               </li>
-              <li>
+              <li onClick={handleMenuToggle}>
                 {" "}
                 <LinkWithStatus
                   href={"/signup"}
@@ -78,7 +77,20 @@ export default function MobileMenu(session) {
               </li>
             </>
           ) : (
-            <></>
+            <>
+               <li onClick={handleMenuToggle}>
+                {" "}
+                <LinkWithStatus
+                  href={"/prfile-dashbord"}
+                  className="px-4 py-2 flex items-center gap-2"
+                >
+                  <button>
+                    <FaUserPlus size={15} />
+                  </button>
+                  Dashbord
+                </LinkWithStatus>{" "}
+              </li>
+            </>
           )}
 
           <li>

@@ -30,7 +30,7 @@ console.log(session)
         </h2>
       </Link>
 
-      {/* <div className="flex items-center gap-3 md:hidden">
+      <div className="flex items-center gap-3 md:hidden">
         {session ? (
           <div className="md:hidden relative">
             <UserAvater session={session} />
@@ -39,7 +39,7 @@ console.log(session)
           ""
         )}
         <MobileMenu session={session} />
-      </div> */}
+      </div>
 
       <ul className="md:flex items-center gap-5 hidden">
         <li>
@@ -55,18 +55,6 @@ console.log(session)
           </LinkWithStatus>{" "}
         </li>
        
-        <li>
-          {" "}
-          <LinkWithStatus
-            href={"/profile-dashbord"}
-            className="px-4 py-2 flex items-center gap-2"
-          >
-            <button>
-              <MdApps size={15} />
-            </button>
-            profile
-          </LinkWithStatus>{" "}
-        </li>
 
         <li>
           {" "}

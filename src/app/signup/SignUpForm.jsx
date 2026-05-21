@@ -134,7 +134,7 @@ export default function SignUpForm() {
 
       <div className="flex flex-col gap-5">
         <Button type="submit" className={`bg-emerald-600 w-full`}>
-          Login Now
+          Sign up Now
         </Button>
         <SocialSignUp />
         <p className="text-gray-500">{"Alrady i have an Acount"} <Link href={"/login"} className="text-emerald-400 hover:underline">Login</Link> </p>
