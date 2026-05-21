@@ -14,6 +14,7 @@ export default function SearchInput({ SearchText, setSearchText }) {
         setSearchText(value);
         handleSearch(value);
       }}
+      className={`border border-gray-400 rounded-xl`}
     >
       <SearchField.Group>
         <SearchField.SearchIcon />

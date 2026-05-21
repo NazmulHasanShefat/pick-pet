@@ -19,8 +19,8 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
             ]),
           ).values(),
         ];
-
-        setDropItems(unique);
+        const newOptions = [...unique, {id: "all", name: "All"}];
+        setDropItems(newOptions);
       } catch (error) {
         console.log(error);
       }
@@ -30,6 +30,7 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
 
   console.log(dropItems, "this is array");
 
+
   const handleChange = (e) => {
     setSelectedKey(e.target.value);
   };
@@ -37,7 +38,7 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
   return (
     <select
       onChange={handleChange}
-      className="w-full dark:bg-gray-700 py-2 px-4 rounded-xl"
+      className="w-full dark:bg-gray-700 border border-gray-400 py-2 px-4 rounded-xl"
     >
       {dropItems.map((option) => {
         return (

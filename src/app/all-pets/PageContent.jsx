@@ -12,7 +12,7 @@ export default function PageContent() {
 
   const url = SearchText
     ? `${baseURL}/search?query=${SearchText}`
-    : selectedKey
+    : selectedKey && selectedKey !== "All"
       ? `${baseURL}/filter-pets?species=${selectedKey}`
       : `${baseURL}/all-pets`;
   const allPetsPromise = fetch(url).then((res) => res.json());
@@ -31,7 +31,7 @@ export default function PageContent() {
           </p>
         </div>
         <div className="md:col-span-3 flex flex-col gap-5 md:flex-row items-center justify-between">
-          <div className="searchbox w-full md:w-1/2">
+          <div className="searchbox w-full md:w-1/2 mt-5 md:mt-0">
             <SearchInput
               SearchText={SearchText}
               setSearchText={setSearchText}
@@ -44,9 +44,7 @@ export default function PageContent() {
       </div>
       <Suspense fallback={<SkeletonCard />}>
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-4 gap-7">
-          <PetCardAll
-            allPetsPromise={allPetsPromise}
-          />
+          <PetCardAll allPetsPromise={allPetsPromise} />
         </div>
       </Suspense>
     </div>

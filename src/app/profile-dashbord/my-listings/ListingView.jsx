@@ -27,7 +27,7 @@ export function ListingView({ currentDetails }) {
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Heading>
-                <div className="w-full px-10 py-5">
+                <div className="w-full md:px-10 py-5">
                   <h2 className="text-black text-2xl font-bold dark:text-white">Description</h2>
                   <p> {currentDetails?.description} </p>
                 </div>

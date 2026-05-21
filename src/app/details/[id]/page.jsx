@@ -1,11 +1,12 @@
 import Image from "next/image";
-import PetRequestForm from "./PetRequestForm";
 import PetDetails from "./PetDetails";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { baseURL } from "@/context/baseUrl";
 import { MdOutlineDangerous } from "react-icons/md";
 import { CheckImageUrl } from "@/context/functions";
+import DescriptionAndName from "./DescriptionAndName";
+import { RequestModalDetailsPage } from "./RequestModalDetailsPage";
 
 export const metadata = {
   title: "pickpet platform - Details",
@@ -47,7 +48,7 @@ export default async function PetDetailsPage({ params }) {
   return (
     <section className="px-5 mt-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-2">
       <div className="md:col-span-6 flex flex-col items-center">
-        <div className="w-[400px] rounded-lg h-[350px] border overflow-hidden flex items-center">
+        <div className="w-[98%] rounded-lg border overflow-hidden flex items-center">
           <Image
             src={ImageIsValid ? PetImageUrl : "./Tommy.jpg"}
             width={800}
@@ -56,15 +57,18 @@ export default async function PetDetailsPage({ params }) {
             className="w-full h-max object-contain rounded-lg"
           />
         </div>
-        <div className="mt-10 w-full">
-          <PetDetails currentDetails={currentDetails} />
+        <div className="mt-5 w-full">
+          {/* <PetDetails currentDetails={currentDetails} /> */}
+          <DescriptionAndName currentDetails={currentDetails} />
         </div>
       </div>
       <div className="md:col-span-6">
+        <div className="w-full mb-5 md:px-10">
         <h2 className="text-2xl">Request to adopt petName</h2>
         <p className="text-gray-500">
           Fill out the form and owner well recive your request{" "}
         </p>
+        </div>
 
         {adoptionStatus === true ? (
           <div className="mt-10">
@@ -91,7 +95,13 @@ export default async function PetDetailsPage({ params }) {
             </p>
           </div>
         ) : (
-          <PetRequestForm currentDetails={currentDetails} />
+          <>
+           <PetDetails currentDetails={currentDetails} />
+           <div className="px-10 mt-10">
+          <RequestModalDetailsPage currentDetails={currentDetails} />
+           </div>
+          </>
+          // <PetRequestForm currentDetails={currentDetails} />
         )}
       </div>
     </section>
