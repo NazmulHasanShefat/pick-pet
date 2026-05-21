@@ -9,7 +9,9 @@ import { CheckImageUrl } from "@/context/functions";
 
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;
-  console.log(id);
+  const myToken = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -17,7 +19,12 @@ export default async function PetDetailsPage({ params }) {
 
   const GetCurrentDetail = async () => {
     try {
-      const res = await fetch(`${baseURL}/single-pet/${id}`);
+      const res = await fetch(`${baseURL}/single-pet/${id}`, {
+         headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${myToken?.token}`
+        },
+      });
       const resData = await res.json();
       return resData;
     } catch (error) {
@@ -31,7 +38,7 @@ export default async function PetDetailsPage({ params }) {
   const adoptionStatus = currentDetails?.data?.adoptedStatus;
   const PetImageUrl = currentDetails?.data?.PetImageUrl;
 
-  const ImageIsValid = CheckImageUrl(PetImageUrl)
+  const ImageIsValid = CheckImageUrl(PetImageUrl);
   return (
     <section className="px-5 mt-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-2">
       <div className="md:col-span-6 flex flex-col items-center">
