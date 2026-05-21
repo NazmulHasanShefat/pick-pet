@@ -8,9 +8,13 @@ import { TbCategoryFilled, TbVaccine } from "react-icons/tb";
 
 
 export default function PetDetails({ currentDetails }) {
-  
+  console.log(currentDetails)
   return (
     <section className="w-full">
+      <div className="px-10">
+        <h2 className="text-2xl"> Description  </h2>
+        <p className="text-gray-500 py-3"> {currentDetails?.data?.description}  </p>
+      </div>
       <div className="flex justify-between pb-5 px-10 items-center">
         <div>
           <h2 className="text-2xl font-bold "> {currentDetails?.data?.petName} </h2>
