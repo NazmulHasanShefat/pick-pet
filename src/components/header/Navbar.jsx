@@ -23,7 +23,7 @@ export default async function Navbar() {
           width={100}
           height={60}
           alt="logo"
-          className="w-[50px]"
+          className="md:w-[50px] w-[30px]"
         />
         <h2 className="font-bold text-3xl italic">
           Pick<span className="text-emerald-500">Pet</span>
