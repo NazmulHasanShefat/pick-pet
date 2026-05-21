@@ -33,44 +33,45 @@ export function PetRequestModal({ currentDetails }) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData);
-    // if (data) {
-    //   const { data: tokenData } = await authClient.token();
-    //   const date = new Date();
-    //   const year = date.getFullYear();
-    //   const month = String(date.getMonth() + 1).padStart(2, "0");
-    //   const day = String(date.getDate()).padStart(2, "0");
+    if (data) {
+      const { data: tokenData } = await authClient.token();
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
 
-    //   const formattedDate = `${year}-${month}-${day}`;
+      const formattedDate = `${year}-${month}-${day}`;
 
-    //   const AdoptionData = {
-    //     adoptionId: currentDetails?.data?._id,
-    //     requestDate: `${formattedDate}`,
-    //     adopted: true,
-    //     status: "pending",
-    //     ...userData,
-    //   };
+      const AdoptionData = {
+        adoptionId: currentDetails?.data?._id,
+        requestDate: `${formattedDate}`,
+        adopted: true,
+        status: "pending",
+        ...userData,
+      };
 
-    //   const res = await fetch(
-    //     `${baseURL}/send-adoption-request/${currentDetails?.data?._id}`,
-    //     {
-    //       method: "PATCH",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         authorization: `Bearer ${tokenData?.token}`,
-    //       },
-    //       body: JSON.stringify(AdoptionData),
-    //     },
-    //   );
-    //   const resData = await res.json();
-    //   if (resData.success) {
-    //     toast.success("request send successfully");
-    //     router.refresh();
-    //   } else {
-    //     toast.danger(resData.message);
-    //   }
-    // } else {
-    //   return router.push("/login");
-    // }
+      const res = await fetch(
+        `${baseURL}/send-adoption-request/${currentDetails?._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(AdoptionData),
+        },
+      );
+      const resData = await res.json();
+      if (resData.success) {
+        toast.success("request send successfully");
+        router.refresh();
+      } else {
+        toast.danger(resData.message);
+      }
+    } else {
+      return router.push("/login");
+    }
+    
   };
 
   // {currentDetails?.request?.requestDate}
@@ -104,7 +105,7 @@ export function PetRequestModal({ currentDetails }) {
                   >
                     <TextField
                       isReadOnly
-                      value={currentDetails?.request?.PetName}
+                      value={currentDetails?.petName}
                       isRequired
                       name="PetName"
                       type="text"
@@ -217,7 +218,7 @@ export function PetRequestModal({ currentDetails }) {
                     </TextField>
 
                     <div className="flex flex-col gap-5">
-                      <Button type="submit" className={`bg-emerald-600 w-full`}>
+                      <Button slot={`close`} type="submit" className={`bg-emerald-600 w-full`}>
                         Adopt Now
                       </Button>
                     </div>
