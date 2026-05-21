@@ -10,14 +10,11 @@ export default function PageContent() {
   const [SearchText, setSearchText] = useState(null);
    const [selectedKey, setSelectedKey] = useState(null);
 
-
   const url = SearchText
     ? `${baseURL}/search?query=${SearchText}`
-    : `${baseURL}/all-pets`;
-
+    : selectedKey ? `${baseURL}/filter-pets?species=${selectedKey}`: `${baseURL}/all-pets`
   const allPetsPromise = fetch(url).then((res) => res.json());
-//   const allPetsPromise = fetch(${baseURL}/all-pets).then((res) => res.json());
-
+console.log(selectedKey)
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-6">
@@ -30,15 +27,15 @@ export default function PageContent() {
             second chance at happiness.
           </p>
         </div>
-        <div className="md:col-span-3 flex items-center justify-between">
-          <div className="searchbox">
+        <div className="md:col-span-3 flex flex-col gap-5 md:flex-row items-center justify-between">
+          <div className="searchbox w-full md:w-1/2">
             <SearchInput
               SearchText={SearchText}
               setSearchText={setSearchText}
             />
           </div>
-          <div className="filter-box">
-            <FilterInput selectedKey={selectedKey} />
+          <div className="filter-box w-full md:w-1/2">
+            <FilterInput setSelectedKey={setSelectedKey} />
           </div>
         </div>
       </div>

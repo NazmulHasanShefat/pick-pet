@@ -1,20 +1,10 @@
 "use client";
 import { baseURL } from "@/context/baseUrl";
-import {
-  Autocomplete,
-  Description,
-  EmptyState,
-  Label,
-  ListBox,
-  SearchField,
-  useFilter,
-} from "@heroui/react";
 import { useEffect, useState } from "react";
 
 export function FilterInput({ selectedKey, setSelectedKey }) {
   const [dropItems, setDropItems] = useState([]);
 
-  const { contains } = useFilter({ sensitivity: "base" });
   const items = [
     { id: "florida", name: "Florida" },
     { id: "delaware", name: "Delaware" },
@@ -27,14 +17,24 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
   useEffect(() => {
     const filterdSpecies = async () => {
       try {
-        const res = await fetch(`${baseURL}/filter-pets?species=dog`);
+        const res = await fetch(`${baseURL}/all-pets`);
         const resData = await res.json();
 
-        const dropItems = resData?.map((item) => ({
-          id: item.Species,
+        const dropItems = resData?.data?.map((item) => ({
+          id: item._id,
           name: item.Species,
         }));
-        setDropItems(dropItems);
+
+        const unique = [
+          ...new Map(
+            resData?.data?.map((item) => [
+              item.Species,
+              { id: item._id, name: item.Species },
+            ]),
+          ).values(),
+        ];
+
+        setDropItems(unique);
       } catch (error) {
         console.log(error);
       }
@@ -43,42 +43,16 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
   }, []);
 
   console.log(dropItems, "this is array");
+  
+  const handleChange = (e)=>{
+    setSelectedKey(e.target.value)
+  }
 
   return (
-    <Autocomplete
-      className="w-full"
-      placeholder="Filter pet"
-      selectionMode="single"
-      value={selectedKey}
-      onChange={setSelectedKey}
-    >
-      <Label>State</Label>
-      <Autocomplete.Trigger>
-        <Autocomplete.Value />
-        <Autocomplete.ClearButton />
-        <Autocomplete.Indicator />
-      </Autocomplete.Trigger>
-      <Autocomplete.Popover>
-        <Autocomplete.Filter filter={contains}>
-          <SearchField autoFocus name="search" variant="secondary">
-            <SearchField.Group>
-              <SearchField.SearchIcon />
-              <SearchField.Input placeholder="Search states..." />
-              <SearchField.ClearButton />
-            </SearchField.Group>
-          </SearchField>
-          <ListBox
-            renderEmptyState={() => <EmptyState>No results found</EmptyState>}
-          >
-            {dropItems.map((item) => (
-              <ListBox.Item key={item.id} id={item.id} textValue={item.name}>
-                {item.name}
-                <ListBox.ItemIndicator />
-              </ListBox.Item>
-            ))}
-          </ListBox>
-        </Autocomplete.Filter>
-      </Autocomplete.Popover>
-    </Autocomplete>
+    <select onChange={handleChange} className="w-full bg-emerald-700 py-2 px-4 rounded-xl">
+      {dropItems.map((option) => {
+        return <option key={option.id} value={option.name}> {option.name} </option>;
+      })}
+    </select>
   );
 }

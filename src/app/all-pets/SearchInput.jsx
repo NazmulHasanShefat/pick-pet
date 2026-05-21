@@ -15,7 +15,6 @@ export default function SearchInput({ SearchText, setSearchText }) {
         handleSearch(value);
       }}
     >
-      <Label>Search</Label>
       <SearchField.Group>
         <SearchField.SearchIcon />
         <SearchField.Input placeholder="Search..." />
