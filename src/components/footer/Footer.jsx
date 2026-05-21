@@ -6,20 +6,22 @@ const Footer = () => {
     <footer className="bg-black text-gray-400 px-6 md:px-16 py-16 mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-             <Link href={"/"} className="flex items-center gap-3">
-        <Image
-          src={`/logo.png`}
-          width={100}
-          height={60}
-          alt="logo"
-          className="w-[50px]"
-        />
-        <h2 className="font-bold text-3xl italic">
-          Pick<span className="text-emerald-500">Pet</span>
-        </h2>
-      </Link>
+          <Link href={"/"} className="flex items-center gap-3">
+            <Image
+              src={`/logo.png`}
+              width={100}
+              height={60}
+              alt="logo"
+              className="w-[50px]"
+            />
+            <h2 className="font-bold text-3xl italic">
+              Pick<span className="text-emerald-500">Pet</span>
+            </h2>
+          </Link>
           <p className="mt-4 max-w-xl">
-           Pet Pick helps loving pets find their forever homes. Browse, adopt, and connect with trusted pet owners to give animals the care and happiness they deserve.
+            Pet Pick helps loving pets find their forever homes. Browse, adopt,
+            and connect with trusted pet owners to give animals the care and
+            happiness they deserve.
           </p>
         </div>
 
@@ -46,9 +48,13 @@ const Footer = () => {
           <div>
             <h3 className="text-white mb-3 tracking-wide">QUICK LINKS</h3>
             <ul className="space-y-2">
-              <li className="hover:text-white cursor-pointer"> <Link href={"/"}>Home</Link> </li>
-              <li className="hover:text-white cursor-pointer"><Link href={"/all-pets"}>All pets</Link></li>
-        
+              <li className="hover:text-white cursor-pointer">
+                {" "}
+                <Link href={"/"}>Home</Link>{" "}
+              </li>
+              <li className="hover:text-white cursor-pointer">
+                <Link href={"/all-pets"}>All pets</Link>
+              </li>
             </ul>
           </div>
 
