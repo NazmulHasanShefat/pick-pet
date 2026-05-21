@@ -1,29 +1,10 @@
-// "use client";
-
-// import { useTheme } from "next-themes";
-// import { GiMoon, GiSun } from "react-icons/gi";
-// import { MdOutlineWbSunny } from "react-icons/md";
-// import SunIcon from "./SunIcon";
-
-// export function ThemeSwitch() {
-//   const { theme, setTheme } = useTheme();
-
-//   return (
-//     <button
-//       suppressHydrationWarning
-//       className="cursor-pointer text-emerald-600 dark:text-white"
-//       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-//     >
-//       {theme === "dark" ? <span>light</span> : <span>dark</span>}
-//       {/* {theme === "dark" ? "light" : "dark"} */}
-//     </button>
-//   );
-// }
-
 "use client";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { BsFillLightbulbOffFill } from "react-icons/bs";
+import { CgDarkMode } from "react-icons/cg";
+import { HiLightBulb } from "react-icons/hi";
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -40,7 +21,7 @@ export function ThemeSwitch() {
       className="cursor-pointer text-emerald-600 dark:text-white"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      <span>{theme === "dark" ? "light" : "dark"}</span>
+      <span>{theme === "dark" ? <BsFillLightbulbOffFill size={20} color="yellow"/> : <HiLightBulb size={25} />}</span>
     </button>
   );
 }
