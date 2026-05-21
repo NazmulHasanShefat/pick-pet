@@ -14,7 +14,7 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
         const unique = [
           ...new Map(
             resData?.data?.map((item) => [
-              item.Species,
+              item.Species?.toLowerCase(),
               { id: item._id, name: item.Species },
             ]),
           ).values(),
@@ -29,15 +29,23 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
   }, []);
 
   console.log(dropItems, "this is array");
-  
-  const handleChange = (e)=>{
-    setSelectedKey(e.target.value)
-  }
+
+  const handleChange = (e) => {
+    setSelectedKey(e.target.value);
+  };
 
   return (
-    <select onChange={handleChange} className="w-full dark:bg-gray-700 py-2 px-4 rounded-xl">
+    <select
+      onChange={handleChange}
+      className="w-full dark:bg-gray-700 py-2 px-4 rounded-xl"
+    >
       {dropItems.map((option) => {
-        return <option key={option.id} value={option.name}> {option.name} </option>;
+        return (
+          <option key={option.id} value={option.name}>
+            {" "}
+            {option.name}{" "}
+          </option>
+        );
       })}
     </select>
   );

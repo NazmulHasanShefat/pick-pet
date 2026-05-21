@@ -2,9 +2,6 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { BsFillLightbulbOffFill } from "react-icons/bs";
-import { CgDarkMode } from "react-icons/cg";
-import { HiLightBulb } from "react-icons/hi";
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -18,10 +15,19 @@ export function ThemeSwitch() {
 
   return (
     <button
+      suppressHydrationWarning
       className="cursor-pointer text-emerald-600 dark:text-white"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      <span>{theme === "dark" ? <BsFillLightbulbOffFill size={20} color="yellow"/> : <HiLightBulb size={25} />}</span>
+      <>
+        {theme === "dark" ? (
+          // <BsFillLightbulbOffFill size={20} color="yellow" />
+          "dark"
+        ) : (
+          // <HiLightBulb size={25}/>
+          "light"
+        )}
+      </>
     </button>
   );
 }
