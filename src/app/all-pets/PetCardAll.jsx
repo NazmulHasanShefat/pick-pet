@@ -9,9 +9,8 @@ import { PetRequestModal } from "./PetRequestModal";
 import { Chip } from "@heroui/react";
 
 export default function PetCardAll({ allPetsPromise }) {
-  const myList = use(allPetsPromise);
+  const myList = use(allPetsPromise)
   const ListInfo = myList?.data;
-  console.log(ListInfo);
 
   return ListInfo.length !== 0 ? (
     ListInfo.map((list, index) => {

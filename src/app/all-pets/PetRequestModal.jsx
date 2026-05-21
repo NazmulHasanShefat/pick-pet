@@ -25,7 +25,6 @@ import {
 } from "@heroui/react";
 
 export function PetRequestModal({ currentDetails }) {
-  console.log(currentDetails);
   const router = useRouter();
   const { data } = authClient.useSession();
 
@@ -74,8 +73,6 @@ export function PetRequestModal({ currentDetails }) {
     
   };
 
-  // {currentDetails?.request?.requestDate}
-  console.log(currentDetails);
   return (
     <Modal>
       <Button
