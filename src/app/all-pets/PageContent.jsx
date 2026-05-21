@@ -8,13 +8,16 @@ import { FilterInput } from "./FilterInput";
 
 export default function PageContent() {
   const [SearchText, setSearchText] = useState(null);
-   const [selectedKey, setSelectedKey] = useState(null);
+  const [selectedKey, setSelectedKey] = useState(null);
 
   const url = SearchText
     ? `${baseURL}/search?query=${SearchText}`
-    : selectedKey ? `${baseURL}/filter-pets?species=${selectedKey}`: `${baseURL}/all-pets`
+    : selectedKey
+      ? `${baseURL}/filter-pets?species=${selectedKey}`
+      : `${baseURL}/all-pets`;
   const allPetsPromise = fetch(url).then((res) => res.json());
-console.log(selectedKey)
+  console.log(selectedKey);
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-6">
@@ -41,7 +44,9 @@ console.log(selectedKey)
       </div>
       <Suspense fallback={<SkeletonCard />}>
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-4 gap-7">
-          <PetCardAll allPetsPromise={allPetsPromise} setSelectedKey={setSelectedKey} />
+          <PetCardAll
+            allPetsPromise={allPetsPromise}
+          />
         </div>
       </Suspense>
     </div>

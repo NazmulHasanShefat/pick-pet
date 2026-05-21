@@ -5,25 +5,11 @@ import { useEffect, useState } from "react";
 export function FilterInput({ selectedKey, setSelectedKey }) {
   const [dropItems, setDropItems] = useState([]);
 
-  const items = [
-    { id: "florida", name: "Florida" },
-    { id: "delaware", name: "Delaware" },
-    { id: "california", name: "California" },
-    { id: "texas", name: "Texas" },
-    { id: "new-york", name: "New York" },
-    { id: "washington", name: "Washington" },
-  ];
-
   useEffect(() => {
     const filterdSpecies = async () => {
       try {
         const res = await fetch(`${baseURL}/all-pets`);
         const resData = await res.json();
-
-        const dropItems = resData?.data?.map((item) => ({
-          id: item._id,
-          name: item.Species,
-        }));
 
         const unique = [
           ...new Map(
@@ -49,7 +35,7 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
   }
 
   return (
-    <select onChange={handleChange} className="w-full bg-emerald-700 py-2 px-4 rounded-xl">
+    <select onChange={handleChange} className="w-full dark:bg-gray-700 py-2 px-4 rounded-xl">
       {dropItems.map((option) => {
         return <option key={option.id} value={option.name}> {option.name} </option>;
       })}
