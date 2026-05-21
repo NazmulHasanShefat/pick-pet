@@ -85,7 +85,7 @@ export function RequestModalDetailsPage({ currentDetails }) {
       </Button>
       <Modal.Backdrop>
         <Modal.Container>
-          <Modal.Dialog className="max-w-[98%] sm:max-w-[60%] md:max-w-[60%]">
+          <Modal.Dialog className="max-w-[98%] sm:max-w-[60%] md:max-w-[60%] p-0 md:p-5">
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Heading>Your Request</Modal.Heading>
