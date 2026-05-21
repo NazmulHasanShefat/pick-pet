@@ -19,7 +19,7 @@ export default async function PetDetailsPage({ params }) {
 
   const GetCurrentDetail = async () => {
     try {
-      const res = await fetch(`${baseURL}/single-pet/${id}`, {
+      const res = await fetch(`${baseURL}/single-pet/${id}`,{
          headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${myToken?.token}`
