@@ -2,6 +2,11 @@ import { baseURL } from "@/context/baseUrl";
 import EditForm from "./EditForm";
 import { Suspense } from "react";
 
+export const metadata = {
+  title: "pickpet platform - Edit",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default async function page({ params }) {
   const { id } = await params;
   const GetEditablePet = fetch(`${baseURL}/single-pet/${id}`)

@@ -5,7 +5,7 @@ backend url https://pick-pet.vercel.app
 
 # Features
 - user can get all pet data 
-- user can adopt pet use this server
+- user can adopt pet
 - user can see user requst or user can cancle her/his request
 
 - admin can add pets

@@ -1,5 +1,10 @@
 import LoginForm from "./LoginForm";
 
+export const metadata = {
+  title: "pickpet platform - Login",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default function LoginPage() {
   return (
     <section className="w-full max-w-7xl mx-auto px-5">

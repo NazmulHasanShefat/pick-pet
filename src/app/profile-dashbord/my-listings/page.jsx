@@ -5,6 +5,11 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import LodingSpin from "@/components/ui/LodingSpin";
 
+export const metadata = {
+  title: "pickpet platform - My listing",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default async function MyListingPage() {
   const session = await auth.api.getSession({
     headers: await headers()

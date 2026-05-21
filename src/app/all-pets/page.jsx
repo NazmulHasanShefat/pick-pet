@@ -1,5 +1,9 @@
 import PageContent from "./PageContent";
 
+export const metadata = {
+  title: "pickpet platform - All pets",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
 
 export default async function AllPetsPage() {
   return (

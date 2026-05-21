@@ -5,6 +5,11 @@ import { headers } from "next/headers";
 import { Suspense } from "react";
 import LodingSpin from "@/components/ui/LodingSpin";
 
+export const metadata = {
+  title: "pickpet platform - Dashbord",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default async function ProfileDashbord() {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -15,8 +20,6 @@ export default async function ProfileDashbord() {
   )
     .then((res) => res.json())
     .catch((err) => console.log(err));
-
-
 
   return (
     <div className="px-5 pt-10">

@@ -1,5 +1,8 @@
-import LoginForm from "../login/LoginForm";
 import SignUpForm from "./SignUpForm";
+export const metadata = {
+  title: "pickpet platform - Sign up",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
 
 export default function SignUpPage() {
   return (

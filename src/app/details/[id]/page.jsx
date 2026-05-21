@@ -7,6 +7,11 @@ import { baseURL } from "@/context/baseUrl";
 import { MdOutlineDangerous } from "react-icons/md";
 import { CheckImageUrl } from "@/context/functions";
 
+export const metadata = {
+  title: "pickpet platform - Details",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;
   const myToken = await auth.api.getToken({

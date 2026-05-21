@@ -1,5 +1,10 @@
 import AddPetForm from "./AddPetForm";
 
+export const metadata = {
+  title: "pickpet platform - Add pet",
+  description: "Pet Adoption Platform to adopt you new pet",
+};
+
 export default function page() {
   return (
     <section className="py-10">

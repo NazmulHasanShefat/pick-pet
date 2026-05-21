@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "pickpet platform ",
+  title: "pickpet platform - Home",
   description: "Pet Adoption Platform to adopt you new pet",
 };
 
