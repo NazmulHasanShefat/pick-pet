@@ -77,7 +77,7 @@ const Footer = () => {
             <h3 className="text-white mb-3 tracking-wide">CONTACT US</h3>
             <ul className="space-y-2">
               <li>786 901 1622</li>
-              <li>info@wandarland.com</li>
+              <li>info@pickpet.com</li>
             </ul>
           </div>
         </div>
