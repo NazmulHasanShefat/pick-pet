@@ -7,6 +7,7 @@ import { PetRequestModal } from "./PetRequestModal";
 import { Chip } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { MdOutlineRequestPage } from "react-icons/md";
+import { motion } from "motion/react";
 
 export default function PetCardAll({ allPetsPromise }) {
   const { data } = authClient.useSession();
@@ -18,7 +19,9 @@ export default function PetCardAll({ allPetsPromise }) {
     ListInfo.map((list, index) => {
       const isValid = CheckImageUrl(list?.PetImageUrl);
       return (
-        <div
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0.7 }}
           key={list._id}
           className="border border-emerald-500 rounded-3xl relative hover:translate-y-2 transition-translate duration-200"
         >
@@ -67,7 +70,7 @@ export default function PetCardAll({ allPetsPromise }) {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       );
     })
   ) : (
