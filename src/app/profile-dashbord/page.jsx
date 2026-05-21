@@ -22,7 +22,7 @@ export default async function ProfileDashbord() {
       <h1 className="text-2xl">My Adation Requests</h1>
       <p className="text-gray-500">Track your adation Requests</p>
       <Suspense fallback={<h1>loding...</h1>}>
-      <div className="adaption_request_cards grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="adaption_request_cards grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <MyRequestCard getMyRequestPromise={getMyRequestPromise}/>
       </div>
       </Suspense>

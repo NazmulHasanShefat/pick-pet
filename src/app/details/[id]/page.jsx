@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { baseURL } from "@/context/baseUrl";
 import { MdOutlineDangerous } from "react-icons/md";
+import { CheckImageUrl } from "@/context/functions";
 
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;
@@ -28,13 +29,15 @@ export default async function PetDetailsPage({ params }) {
 
   const OwnerEmail = currentDetails?.data?.Owner_Email;
   const adoptionStatus = currentDetails?.data?.adoptedStatus;
+  const PetImageUrl = currentDetails?.data?.PetImageUrl;
 
+  const ImageIsValid = CheckImageUrl(PetImageUrl)
   return (
     <section className="px-5 mt-10 w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-2">
       <div className="md:col-span-6 flex flex-col items-center">
         <div className="w-[400px] rounded-lg h-[350px] border overflow-hidden flex items-center">
           <Image
-            src={"/Tommy.jpg"}
+            src={ImageIsValid ? PetImageUrl : "./Tommy.jpg"}
             width={800}
             height={1200}
             alt="detailsImage"

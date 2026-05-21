@@ -2,18 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaUserPlus } from "react-icons/fa";
 import { LuLogIn } from "react-icons/lu";
-import { MdApps } from "react-icons/md";
+import { MdApps, MdMenuOpen } from "react-icons/md";
 import { ThemeSwitch } from "../ui/ThemeToggler";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import UserAvater from "./UserAvater";
 import LinkWithStatus from "../ui/LinkWithStatus";
+import MobileMenu from "./MobileMenu";
 
 export default async function Navbar() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  
+console.log(session)
   return (
     <nav className="w-full border-2 rounded-b-3xl dark:border-t-0 flex items-center border-emerald-400 border-t-0 justify-between px-5 py-3">
       <Link href={"/"} className="flex items-center gap-3">
@@ -28,7 +29,19 @@ export default async function Navbar() {
           Pick<span className="text-emerald-500">Pet</span>
         </h2>
       </Link>
-      <ul className="flex items-center gap-5">
+
+      {/* <div className="flex items-center gap-3 md:hidden">
+        {session ? (
+          <div className="md:hidden relative">
+            <UserAvater session={session} />
+          </div>
+        ) : (
+          ""
+        )}
+        <MobileMenu session={session} />
+      </div> */}
+
+      <ul className="md:flex items-center gap-5 hidden">
         <li>
           {" "}
           <LinkWithStatus
@@ -38,10 +51,23 @@ export default async function Navbar() {
             <button>
               <MdApps size={15} />
             </button>
-           Home
+            Home
           </LinkWithStatus>{" "}
         </li>
-     
+       
+        <li>
+          {" "}
+          <LinkWithStatus
+            href={"/profile-dashbord"}
+            className="px-4 py-2 flex items-center gap-2"
+          >
+            <button>
+              <MdApps size={15} />
+            </button>
+            profile
+          </LinkWithStatus>{" "}
+        </li>
+
         <li>
           {" "}
           <LinkWithStatus
@@ -84,7 +110,7 @@ export default async function Navbar() {
           </>
         ) : (
           <>
-          <UserAvater session={session} />
+            <UserAvater session={session} />
           </>
         )}
 

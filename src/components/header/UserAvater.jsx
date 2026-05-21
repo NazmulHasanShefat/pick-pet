@@ -19,10 +19,10 @@ export default function UserAvater({ session }) {
         {ImageIsValid ? (
           <Avatar>
             <Avatar.Image
-              alt="Junior Garcia"
-              src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg"
+              alt="Avatar image"
+              src={ImageIsValid ? session?.user?.image : "./placeholder.jpg"}
             />
-            <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+            <Avatar.Fallback delayMs={600}> {session?.user?.name[0]} </Avatar.Fallback>
           </Avatar>
         ) : (
           <Avatar color="accent">
@@ -30,16 +30,18 @@ export default function UserAvater({ session }) {
           </Avatar>
         )}
       </Dropdown.Trigger>
-      <Dropdown.Popover>
+      <Dropdown.Popover placement="bottom end" className="min-w-[80%] md:min-w-[300px]">
         <div className="px-3 pt-3 pb-1">
           <div className="flex items-center gap-2">
             {ImageIsValid ? (
               <Avatar>
                 <Avatar.Image
-                  alt="Junior Garcia"
-                  src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/orange.jpg"
+                  alt="Avatar image"
+                  src={
+                    ImageIsValid ? session?.user?.image : "./placeholder.jpg"
+                  }
                 />
-                <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+                <Avatar.Fallback delayMs={600}> {session?.user?.name[0]} </Avatar.Fallback>
               </Avatar>
             ) : (
               <Avatar color="accent">
@@ -47,16 +49,22 @@ export default function UserAvater({ session }) {
               </Avatar>
             )}
             <div className="flex flex-col gap-0">
-              <p className="text-sm leading-5 font-medium"> {session?.user?.name} </p>
-              <p className="text-xs leading-none text-muted"> {session?.user?.email} </p>
+              <p className="text-sm leading-5 font-medium">
+                {" "}
+                {session?.user?.name}{" "}
+              </p>
+              <p className="text-xs leading-none text-muted">
+                {" "}
+                {session?.user?.email}{" "}
+              </p>
             </div>
           </div>
         </div>
         <Dropdown.Menu>
           <Dropdown.Item id="dashbord" textValue="dashbord">
-          <Link href={`/profile-dashbord`} className="block w-full h-full">
-            Dashbord
-          </Link>
+            <Link href={`/profile-dashbord`} className="block w-full h-full">
+              Dashbord
+            </Link>
           </Dropdown.Item>
           <Dropdown.Item id="logout" textValue="Logout" variant="danger">
             <LogoutButton />

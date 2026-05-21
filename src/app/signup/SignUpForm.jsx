@@ -28,6 +28,7 @@ export default function SignUpForm() {
         email: userData.email,
         password: userData.password,
         image: userData.ProfileImageUrl,
+        callbackURL: "/login"
     })
 
     if(error){

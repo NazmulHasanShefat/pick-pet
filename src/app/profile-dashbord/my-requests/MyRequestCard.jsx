@@ -37,7 +37,15 @@ export default function MyRequestCard({ getMyRequestPromise }) {
                     <ViewModal currentDetails={item}/>
                     <CancleButton CancleId={item?._id}/>
                   </div>
-                  <Chip color="success"> {item?.request?.status} </Chip>
+                  {item?.request?.status === "pending" ?
+                   <Chip color="warning"> {item?.request?.status} </Chip>
+                   :
+                   item?.request?.status === "approved" ?
+                   <Chip color="success"> {item?.request?.status} </Chip> :
+                   item?.request?.status === "rejected" ?
+                    <Chip color="danger"> {item?.request?.status} </Chip> :
+                    <Chip color="success"> {item?.request?.status} </Chip>
+                  }
                 </div>
               </div>
             </div>

@@ -5,12 +5,12 @@ import { Label, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 export default function LogoutButton() {
-    const router = useRouter();
+  const router = useRouter();
   const handleLogout = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-            toast.success("you are loged out successfully")
+          toast.success("you are loged out successfully");
           router.push("/login"); // redirect to login page
           router.refresh();
         },
