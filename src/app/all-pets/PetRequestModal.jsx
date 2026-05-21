@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 
 import { MdOutlineRequestPage } from "react-icons/md";
 
-import { Check } from "@gravity-ui/icons";
+
 import {
   Description,
   FieldError,
