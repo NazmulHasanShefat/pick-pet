@@ -12,8 +12,10 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -32,10 +34,11 @@ export default function SignUpForm() {
     })
 
     if(error){
-        return console.log("faild to registed", error)
+        toast.danger(error.message || "Something went wrong")
     }
     if(data){
-        return console.log("regiterd successfully", data);
+        toast.success("Account created successfully, Please check your email to verify your account")
+        router.push("/login");
     }
   };
 
@@ -52,7 +55,6 @@ export default function SignUpForm() {
       </TextField>
       
       <TextField
-        isRequired
         name="ProfileImageUrl"
         type="text"
       >
