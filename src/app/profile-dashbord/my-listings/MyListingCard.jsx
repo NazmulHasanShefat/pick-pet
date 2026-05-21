@@ -32,7 +32,7 @@ export default function MyListCart({ myListPromise }) {
             className="border relative border-emerald-500 rounded-3xl hover:translate-y-2 transition-translate duration-200"
           >
             {list?.adoptedStatus === true ? (
-              <Chip color="warning" className="absolute left-0 top-0 ml-2 mt-2">
+              <Chip color="success" className="absolute left-0 top-0 ml-2 mt-2">
                 Adopted
               </Chip>
             ) : (

@@ -4,6 +4,7 @@ import { baseURL } from "@/context/baseUrl";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import LodingSpin from "@/components/ui/LodingSpin";
+import ListingStates from "./ListingStates";
 
 export const metadata = {
   title: "pickpet platform - My listing",
@@ -12,22 +13,38 @@ export const metadata = {
 
 export default async function MyListingPage() {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
-  
-  const myListPromise = fetch(`${baseURL}/my-listing/${session?.user?.email}`).then((res) => res.json());
- 
+    headers: await headers(),
+  });
+
+  const myListPromise = fetch(
+    `${baseURL}/my-listing/${session?.user?.email}`,
+  ).then((res) => res.json());
+
   return (
     <section className="px-5 py-10">
-      <h1 className="text-2xl">My Listing</h1>
-      <p className="text-gray-500">Listed all pets you have created</p>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div>
+          <h1 className="text-2xl">My Listing</h1>
+          <p className="text-gray-500">Listed all pets you have created</p>
+        </div>
+        <div className="w-full flex items-center justify-end">
+          <Suspense fallback={<p>loding...</p>}>
+            <ListingStates myListPromise={myListPromise} />
+          </Suspense>
+        </div>
+      </div>
 
-      <Suspense fallback={<><LodingSpin /></>}>
+      <Suspense
+        fallback={
+          <>
+            <LodingSpin />
+          </>
+        }
+      >
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-4 gap-7">
           <MyListCart myListPromise={myListPromise} />
         </div>
       </Suspense>
-
     </section>
   );
 }

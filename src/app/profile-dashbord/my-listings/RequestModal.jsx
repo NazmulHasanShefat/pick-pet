@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { MdOutlineRequestPage } from "react-icons/md";
 
 export function RequestModal({ currentDetails }) {
-  console.log(currentDetails);
   const router = useRouter();
 
   const handleReject = async (id) => {
