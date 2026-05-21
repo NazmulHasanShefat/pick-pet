@@ -26,7 +26,12 @@ export function ListingView({ currentDetails }) {
           <Modal.Dialog className="max-w-[98%] sm:max-w-[70%] md:max-w-[90%]">
             <Modal.CloseTrigger />
             <Modal.Header>
-              <Modal.Heading>Welcome to HeroUI</Modal.Heading>
+              <Modal.Heading>
+                <div className="w-full px-10 py-5">
+                  <h2 className="text-black text-2xl font-bold dark:text-white">Description</h2>
+                  <p> {currentDetails?.description} </p>
+                </div>
+              </Modal.Heading>
             </Modal.Header>
             <Modal.Body>
               <section className="w-full">

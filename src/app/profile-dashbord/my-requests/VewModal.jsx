@@ -14,7 +14,7 @@ export function ViewModal({ currentDetails }) {
         variant="secondary"
         className={`px-2 py-1 text-white rounded-lg text-xs cursor-pointer hover:opacity-80 bg-emerald-700 h-max`}
       >
-        <FaRegEye className="my-0"/>
+        <FaRegEye className="my-0" />
         View
       </Button>
       <Modal.Backdrop>
@@ -22,7 +22,14 @@ export function ViewModal({ currentDetails }) {
           <Modal.Dialog className="max-w-[98%] sm:max-w-[70%] md:max-w-[90%]">
             <Modal.CloseTrigger />
             <Modal.Header>
-              <Modal.Heading>Welcome to HeroUI</Modal.Heading>
+              <Modal.Heading>
+                <div className="w-full px-10 py-5">
+                  <h2 className="text-black text-2xl font-bold dark:text-white">
+                    Description
+                  </h2>
+                  <p> {currentDetails?.description} </p>
+                </div>
+              </Modal.Heading>
             </Modal.Header>
             <Modal.Body>
               <section className="w-full">
@@ -43,8 +50,10 @@ export function ViewModal({ currentDetails }) {
                     </div>
                   </div>
 
-                  <div className="w-full"> 
-                    <p className="text-gray-500 mt-5 md:mt-0 text-sm py-0.5">Adoption Fee</p>
+                  <div className="w-full">
+                    <p className="text-gray-500 mt-5 md:mt-0 text-sm py-0.5">
+                      Adoption Fee
+                    </p>
 
                     <p className="text-xl font-bold text-emerald-500">
                       {currentDetails?.adoptionFee}tk
@@ -54,7 +63,7 @@ export function ViewModal({ currentDetails }) {
 
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 md:px-10">
                   <div className="flex items-center gap-3">
-                         <MdOutlinePets size={25} />
+                    <MdOutlinePets size={25} />
                     <div>
                       <h3 className="text-gray-500 text-xs">Pet Name</h3>
                       <p className="dark:text-white font-semibold text-md">
