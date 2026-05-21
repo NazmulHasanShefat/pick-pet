@@ -14,6 +14,7 @@ import { RequestModal } from "./RequestModal";
 export default function MyListCart({ myListPromise }) {
   const {data:session} = authClient.useSession();
   const myList = use(myListPromise);
+  
   const ListInfo = myList?.data;
   console.log(ListInfo.length)
 
