@@ -1,5 +1,8 @@
 import {CircleDollar} from "@gravity-ui/icons";
 import {Card, Link} from "@heroui/react";
+import { FaHome, FaUserFriends } from "react-icons/fa";
+import { GiSelfLove } from "react-icons/gi";
+import { MdOutlinePets } from "react-icons/md";
 
 export default function WhyBuy() {
   return (
@@ -7,7 +10,7 @@ export default function WhyBuy() {
       <h1 className="text-center text-2xl lg:text-5xl my-10">Why Adopt our pets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
             <Card className="w-auto">
-              <CircleDollar aria-label="Dollar sign icon" className="text-primary size-6" role="img" />
+              <FaHome size={35} />
               <Card.Header>
                 <Card.Title>Give Pets a Loving Home</Card.Title>
                 <Card.Description>
@@ -16,7 +19,7 @@ export default function WhyBuy() {
               </Card.Header>
             </Card>
             <Card className="w-auto">
-              <CircleDollar aria-label="Dollar sign icon" className="text-primary size-6" role="img" />
+              <MdOutlinePets />
               <Card.Header>
                 <Card.Title>Save Lives Through Adoption</Card.Title>
                 <Card.Description>
