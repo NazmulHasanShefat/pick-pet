@@ -24,7 +24,6 @@ export function DeleteButton({deleteId}) {
         router.refresh();
         toast.success("deleted successfully");
       }
-      console.log(result);
     } catch (error) {
       console.log(error)
     }

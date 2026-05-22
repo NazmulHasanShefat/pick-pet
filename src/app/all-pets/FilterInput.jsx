@@ -29,9 +29,6 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
     filterdSpecies();
   }, []);
 
-  console.log(dropItems, "this is array");
-
-
   const handleChange = (e) => {
     setSelectedKey(e.target.value);
   };

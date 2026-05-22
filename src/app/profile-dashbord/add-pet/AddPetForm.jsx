@@ -37,8 +37,6 @@ export default function AddPetForm() {
         router.push("/profile-dashbord/my-listings");
         router.refresh();
       }
-     
-      console.log(showResult);
     } catch (error) {
       console.log(error);
     }

@@ -15,7 +15,6 @@ export default function PetCardAll({ allPetsPromise }) {
   const { data } = authClient.useSession();
   const myList = use(allPetsPromise);
   const ListInfo = myList?.data;
-  console.log(ListInfo);
 
   return ListInfo.length !== 0 ? (
     ListInfo.slice(0, 4).map((list, index) => {

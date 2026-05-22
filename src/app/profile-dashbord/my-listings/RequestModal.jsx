@@ -8,7 +8,7 @@ import { MdOutlineRequestPage } from "react-icons/md";
 
 export function RequestModal({ currentDetails }) {
   const router = useRouter();
-  console.log(currentDetails)
+
   const handleReject = async (id) => {
     const { data: myToken } = await authClient.token();
     try {

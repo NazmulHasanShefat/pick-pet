@@ -17,7 +17,6 @@ export default function MyListCart({ myListPromise }) {
   const myList = use(myListPromise);
 
   const ListInfo = myList?.data;
-  console.log(ListInfo.length);
 
   return ListInfo.length === 0 || !ListInfo ? (
     <div className="col-span-4 flex text-center justify-center items-center">

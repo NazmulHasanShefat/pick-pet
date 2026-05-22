@@ -25,7 +25,6 @@ import {
 } from "@heroui/react";
 
 export function RequestModalDetailsPage({ currentDetails }) {
-    console.log(currentDetails, "currentDetails");
   const router = useRouter();
   const { data } = authClient.useSession();
 

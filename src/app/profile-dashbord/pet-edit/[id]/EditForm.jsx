@@ -21,7 +21,7 @@ import { use } from "react";
 export default function EditForm({ GetEditablePet, id }) {
   const pet = use(GetEditablePet);
   const petData = pet?.data;
-  console.log(petData);
+
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();

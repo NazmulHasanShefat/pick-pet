@@ -19,7 +19,6 @@ export default async function PetDetailsPage({ params }) {
   // const myToken = await auth.api.getToken({
   //   headers: await headers(),
   // });
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });

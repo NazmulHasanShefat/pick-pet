@@ -17,7 +17,6 @@ import { FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 export function PetRequestModal({ currentDetails }) {
-  console.log(currentDetails);
   const router = useRouter();
   const { data } = authClient.useSession();
 

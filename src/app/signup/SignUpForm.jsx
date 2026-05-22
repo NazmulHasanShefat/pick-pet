@@ -13,61 +13,67 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function SignUpForm() {
+  const [isPending, setPending] = useState(false);
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
+    setPending(true);
     const formData = new FormData(e.currentTarget);
-    const userData =  Object.fromEntries(formData);
-    if(userData.ConfirmPassword !== userData.password){
-        return toast.danger("Confirm password dont match")
+    const userData = Object.fromEntries(formData);
+    if (userData.ConfirmPassword !== userData.password) {
+      return toast.danger("Confirm password dont match");
     }
-    // console.log(userData);
 
-    const {data, error} = await authClient.signUp.email({
-        name: userData.name,
-        email: userData.email,
-        password: userData.password,
-        image: userData.ProfileImageUrl,
-        callbackURL: "/login"
-    })
+    const { data, error } = await authClient.signUp.email({
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      image: userData.ProfileImageUrl,
+      callbackURL: "/login",
+    });
 
-    if(error){
-        toast.danger(error.message || "Something went wrong")
+    if (error) {
+      toast.danger(error.message || "Something went wrong");
     }
-    if(data){
-        toast.success("Account created successfully, Please check your email to verify your account")
-        router.push("/login");
+    if (data) {
+      setPending(false);
+      toast.success(
+        "Account created successfully, Please check your email to verify your account",
+      );
+      router.push("/login");
     }
   };
 
   return (
-    <Form className="flex md:w-96 mt-5 w-full flex-col gap-4" onSubmit={onSubmit}>
-      <TextField
-        isRequired
-        name="name"
-        type="text"
-      >
+    <Form
+      className="flex md:w-96 mt-5 w-full flex-col gap-4"
+      onSubmit={onSubmit}
+    >
+      <TextField isRequired name="name" type="text">
         <Label>Name</Label>
-        <Input placeholder="Jon due"  className={`focus:ring-2 focus:ring-emerald-400`}/>
+        <Input
+          placeholder="Jon due"
+          className={`focus:ring-2 focus:ring-emerald-400`}
+        />
         <FieldError />
       </TextField>
-      
-      <TextField
-        name="ProfileImageUrl"
-        type="text"
-      >
+
+      <TextField name="ProfileImageUrl" type="text">
         <Label>Photo Url</Label>
-        <Input placeholder="https://myhosting.com/photo.jpg"  className={`focus:ring-2 focus:ring-emerald-400`}/>
+        <Input
+          placeholder="https://myhosting.com/photo.jpg"
+          className={`focus:ring-2 focus:ring-emerald-400`}
+        />
         <FieldError />
       </TextField>
-      
+
       <TextField
         isRequired
         name="email"
         type="email"
-       
         validate={(value) => {
           if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
             return "Please enter a valid email address";
@@ -76,10 +82,12 @@ export default function SignUpForm() {
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="john@example.com"  className={`focus:ring-2 focus:ring-emerald-400`}/>
+        <Input
+          placeholder="john@example.com"
+          className={`focus:ring-2 focus:ring-emerald-400`}
+        />
         <FieldError />
       </TextField>
-
 
       <TextField
         isRequired
@@ -100,13 +108,16 @@ export default function SignUpForm() {
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter your password" className={`focus:ring-2 focus:ring-emerald-400`}/>
+        <Input
+          placeholder="Enter your password"
+          className={`focus:ring-2 focus:ring-emerald-400`}
+        />
         <Description>
           Must be at least 8 characters with 1 uppercase and 1 number
         </Description>
         <FieldError />
       </TextField>
-     
+
       <TextField
         isRequired
         minLength={8}
@@ -126,20 +137,27 @@ export default function SignUpForm() {
         }}
       >
         <Label>Confirm Password</Label>
-        <Input placeholder="Enter your password" className={`focus:ring-2 focus:ring-emerald-400`}/>
+        <Input
+          placeholder="Enter your password"
+          className={`focus:ring-2 focus:ring-emerald-400`}
+        />
         <Description>
           Must be at least 8 characters with 1 uppercase and 1 number
         </Description>
         <FieldError />
       </TextField>
 
-
       <div className="flex flex-col gap-5">
         <Button type="submit" className={`bg-emerald-600 w-full`}>
-          Sign up Now
+          { isPending ? "procesing..." : "Sign up Now"}
         </Button>
         <SocialSignUp />
-        <p className="text-gray-500">{"Alrady i have an Acount"} <Link href={"/login"} className="text-emerald-400 hover:underline">Login</Link> </p>
+        <p className="text-gray-500">
+          {"Alrady i have an Acount"}{" "}
+          <Link href={"/login"} className="text-emerald-400 hover:underline">
+            Login
+          </Link>{" "}
+        </p>
       </div>
     </Form>
   );

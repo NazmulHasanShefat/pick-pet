@@ -4,7 +4,7 @@ import { use } from "react";
 export default function ListingStates({ myListPromise }) {
   const myData = use(myListPromise);
   const ListingInfo = myData?.data;
-  console.log(ListingInfo);
+
   const filterAdopted = ListingInfo.filter(
     (itme) => itme?.adoptedStatus === true,
   );

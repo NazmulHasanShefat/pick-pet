@@ -7,7 +7,7 @@ import { CgDanger } from "react-icons/cg";
 export default function MyRequestCard({ getMyRequestPromise }) {
   const myRequestPromiseData = use(getMyRequestPromise);
   const myRequests = myRequestPromiseData?.data;
-  console.log(myRequests);
+ 
   if (myRequests.length === 0 || !myRequests) {
     return (
        <div className="col-span-4 flex text-center justify-center items-center">

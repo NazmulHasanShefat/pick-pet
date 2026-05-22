@@ -12,11 +12,14 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
+import { useState } from "react";
 
 
 export default function LoginForm() {
+  const [isPending, setPending] = useState(false)
   const onSubmit = async (e) => {
     e.preventDefault();
+    setPending(true)
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData);
     
@@ -29,11 +32,12 @@ export default function LoginForm() {
         })
     
         if(error){
+            setPending(false)
             toast.danger(error.message)
             return console.log("faild to registed", error)
         }
         if(data){
-            return console.log("login successfull", data);
+          setPending(false)
         }
   };
 
@@ -82,7 +86,7 @@ export default function LoginForm() {
       </TextField>
       <div className="flex flex-col gap-5">
         <Button type="submit" className={`bg-emerald-600 w-full`}>
-          Login Now
+          { isPending ? "processing..." : "Login Now"}
         </Button>
        <SocialSignUp />
         <p className="text-gray-500">{"I don't have any acount"} <Link href={"/signup"} className="text-emerald-400 hover:underline">Signup</Link> </p>

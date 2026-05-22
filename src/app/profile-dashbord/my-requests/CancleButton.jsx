@@ -11,7 +11,7 @@ export function CancleButton({CancleId}) {
 
   const handleDelete = async (id)=>{
     const {data:myToken} = await authClient.token();
-    console.log(id)
+    
     try {
       const res = await fetch(`${baseURL}/cancle-adopt-request/${id}`,{
         method: "PATCH",
@@ -28,7 +28,7 @@ export function CancleButton({CancleId}) {
     if(result.success === false){
         toast.danger("Cancled request faild");
       }
-      console.log(result);
+     
     } catch (error) {
       console.log(error)
     }
