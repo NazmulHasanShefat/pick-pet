@@ -110,10 +110,17 @@ export function RequestModal({ currentDetails }) {
                         {currentDetails?.request?.CustomerName}
                       </div>
                     </div>
+
                     <div className="dark:text-white mt-2">
                       <div>Customer Email: </div>
                       <div className="text-emerald-500">
                         {currentDetails?.request?.CustomerEmail}
+                      </div>{" "}
+                    </div>
+                    <div className="dark:text-white mt-2">
+                      <div>Customer Message: </div>
+                      <div className="text-emerald-500">
+                        {currentDetails?.request?.MessageToOwner}
                       </div>{" "}
                     </div>
 
