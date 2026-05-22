@@ -1,7 +1,7 @@
 # Pet Adoption Platform
 Our platform helps homeless pets find caring families through a simple, safe, and heartwarming adoption experience
 
-backend url https://pick-pet.vercel.app
+Live url https://pick-pet.vercel.app
 
 # Features
 - user can get all pet data 
