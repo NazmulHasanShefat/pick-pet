@@ -81,7 +81,7 @@ export default function MobileMenu({session}) {
                <li onClick={handleMenuToggle}>
                 {" "}
                 <LinkWithStatus
-                  href={"/prfile-dashbord"}
+                  href={"/profile-dashbord"}
                   className="px-4 py-2 flex items-center gap-2"
                 >
                   <button>

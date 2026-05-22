@@ -7,7 +7,6 @@ import { PetRequestModal } from "./PetRequestModal";
 import { Chip } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { MdOutlineRequestPage } from "react-icons/md";
-import { motion } from "motion/react";
 import { CgDanger } from "react-icons/cg";
 
 export default function PetCardAll({ allPetsPromise }) {
@@ -21,7 +20,7 @@ export default function PetCardAll({ allPetsPromise }) {
     ListInfo.map((list, index) => {
       const isValid = CheckImageUrl(list?.PetImageUrl);
       return (
-        <motion.div
+        <div
         initial={{ opacity: 0.7 }}
           animate={{ opacity: 1 }}
           key={list._id}
@@ -72,7 +71,7 @@ export default function PetCardAll({ allPetsPromise }) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       );
     })
   ) : (
