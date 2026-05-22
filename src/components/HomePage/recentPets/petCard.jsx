@@ -9,6 +9,7 @@ import Link from "next/link";
 import { PetRequestModal } from "@/app/all-pets/PetRequestModal";
 import { authClient } from "@/lib/auth-client";
 import { Chip } from "@heroui/react";
+import { CgDanger } from "react-icons/cg";
 
 export default function PetCardAll({ allPetsPromise }) {
   const { data } = authClient.useSession();
@@ -79,8 +80,11 @@ export default function PetCardAll({ allPetsPromise }) {
       );
     })
   ) : (
-    <div className="col-span-4 flex text-center">
-      <h1>Data not found</h1>
+    <div className="col-span-4 flex text-center justify-center items-center">
+      <div className="flex flex-col text-yellow-600 items-center justify-center">
+        <CgDanger size={35} />
+        <h1>Data not found</h1>
+      </div>
     </div>
   );
 }

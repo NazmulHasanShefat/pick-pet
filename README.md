@@ -14,7 +14,7 @@ Live url https://pick-pet.vercel.app
 - admin can delete and update his/her pet information
 
 # Technology use
-- Next js
+- Next js + javaScript
 - Better Auth for user authorization 
 - mongodb for database 
 - tailwind css for style

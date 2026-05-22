@@ -10,6 +10,7 @@ import { authClient } from "@/lib/auth-client";
 import { ListingView } from "./ListingView";
 import { RequestModal } from "./RequestModal";
 import { Chip } from "@heroui/react";
+import { CgDanger } from "react-icons/cg";
 
 export default function MyListCart({ myListPromise }) {
   const { data: session } = authClient.useSession();
@@ -19,8 +20,11 @@ export default function MyListCart({ myListPromise }) {
   console.log(ListInfo.length);
 
   return ListInfo.length === 0 || !ListInfo ? (
-    <div className="col-span-4 flex text-center">
-      <h1>Data not found</h1>
+    <div className="col-span-4 flex text-center justify-center items-center">
+      <div className="flex flex-col text-yellow-600 items-center justify-center">
+        <CgDanger size={35} />
+        <h1>Data not found</h1>
+      </div>
     </div>
   ) : (
     ListInfo.map((list, index) => {

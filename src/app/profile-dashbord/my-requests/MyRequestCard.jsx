@@ -2,6 +2,7 @@ import { Chip } from "@heroui/react";
 import { use } from "react";
 import { CancleButton } from "./CancleButton";
 import { ViewModal } from "./VewModal";
+import { CgDanger } from "react-icons/cg";
 
 export default function MyRequestCard({ getMyRequestPromise }) {
   const myRequestPromiseData = use(getMyRequestPromise);
@@ -9,9 +10,12 @@ export default function MyRequestCard({ getMyRequestPromise }) {
   console.log(myRequests);
   if (myRequests.length === 0 || !myRequests) {
     return (
-      <div className="w-full flex justify-center">
-        <h1>No data found</h1>
-      </div>
+       <div className="col-span-4 flex text-center justify-center items-center">
+           <div className="flex flex-col text-yellow-600 items-center justify-center">
+            <CgDanger size={35}/>
+           <h1>Data not found</h1>
+           </div>
+         </div>
     );
   } else {
     return (
