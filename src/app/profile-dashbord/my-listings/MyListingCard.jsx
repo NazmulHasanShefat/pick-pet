@@ -39,7 +39,7 @@ export default function MyListCart({ myListPromise }) {
               ""
             )}
             <Image
-              src={isValid ? list?.PetImageUrl : "/tommy.jpg"}
+              src={isValid ? list?.PetImageUrl : "/placeholder.jpg"}
               className="w-full h-[200px] rounded-b-2xl rounded-t-3xl object-cover"
               width={800}
               height={900}
