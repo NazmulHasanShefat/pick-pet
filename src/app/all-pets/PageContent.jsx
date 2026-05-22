@@ -15,7 +15,16 @@ export default function PageContent() {
     : selectedKey && selectedKey !== "All"
       ? `${baseURL}/filter-pets?species=${selectedKey}`
       : `${baseURL}/all-pets`;
-  const allPetsPromise = fetch(url).then((res) => res.json()).catch((error)=>{console.log(error)});
+
+  const allPetsPromise = fetch(url)
+    .then((res) => res.json())
+    .catch((error) => {
+      console.log(error);
+    });
+
+      const spiciesCategoryPromise = fetch(`${baseURL}/find-uniqueCategorys`)
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
 
   return (
     <div>
@@ -37,7 +46,13 @@ export default function PageContent() {
             />
           </div>
           <div className="filter-box w-full md:w-1/2">
-            <FilterInput setSelectedKey={setSelectedKey} />
+          <Suspense fallback={
+            <select className="w-full md:mb-0 mb-3 dark:bg-gray-700 border border-emerald-700 py-2 px-4 rounded-xl">
+              <option value="loding...">loding....</option>
+            </select>
+          }>
+            <FilterInput spiciesCategoryPromise={spiciesCategoryPromise} setSelectedKey={setSelectedKey} />
+          </Suspense>
           </div>
         </div>
       </div>
