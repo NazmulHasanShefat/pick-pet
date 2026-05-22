@@ -28,13 +28,13 @@ export default function MyRequestCard({ getMyRequestPromise }) {
             >
               <div className="p-5">
                 <h2 className="text-3xl"> {item?.petName} </h2>
-                <p className="text-xs mt-2">Pick up Date: {item?.request?.PickUpDate} </p>
-                <p className="mt-3 text-xs text-gray-500">
+                <p className="text-lg mt-2">Pick up Date: {item?.request?.PickUpDate} </p>
+                <p className="mt-3 text-base text-gray-500">
                   Request Date:{" "}
                   <span className="text-emerald-500"> {item?.request?.requestDate} </span>
                 </p>
-                <p className="mt-1 text-xs text-gray-500">
-                  Adation fee: <span className="text-emerald-500"> {item?.adoptionFee} $</span>
+                <p className="mt-1 text-base text-gray-500">
+                  Adoption fee: <span className="text-emerald-500"> {item?.adoptionFee} $</span>
                 </p>
                 <div className="flex items-center justify-between gap-5 mt-3">
                   <div className="flex gap-2">

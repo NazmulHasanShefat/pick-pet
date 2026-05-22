@@ -40,7 +40,7 @@ export default function Hero() {
             href={"/all-pets"}
             className="bg-emerald-700 w-max flex items-center gap-3 hover:scale-110 transition-scale duration-200 px-4 py-2 rounded-xl mt-5 cursor-pointer text-white"
           >
-            Adapt Now
+            Adaopt Now
             <span>
               <FaArrowUpRightFromSquare />
             </span>

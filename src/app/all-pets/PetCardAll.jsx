@@ -46,7 +46,7 @@ export default function PetCardAll({ allPetsPromise }) {
             <p className="text-md mt-1 line-clamp-2"> {list?.description} </p>
             <p className="mt-1 text-base text-gray-400">Dhaka, bangladesh</p>
             <p className="mt-1 text-base text-gray-400">
-              Adation fee:{" "}
+              Adoption fee:{" "}
               <span className="text-emerald-400"> {list?.adoptionFee}tk </span>
             </p>
             <div className="flex items-center flex-col gap-5 mt-3">
