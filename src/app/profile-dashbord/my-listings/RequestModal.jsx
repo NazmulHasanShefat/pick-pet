@@ -8,7 +8,7 @@ import { MdOutlineRequestPage } from "react-icons/md";
 
 export function RequestModal({ currentDetails }) {
   const router = useRouter();
-
+  console.log(currentDetails)
   const handleReject = async (id) => {
     const { data: myToken } = await authClient.token();
     try {
@@ -99,7 +99,7 @@ export function RequestModal({ currentDetails }) {
             </Modal.Header>
             <Modal.Body>
               <section className="w-full">
-                {!currentDetails || !currentDetails?.request ? (
+                {!currentDetails || !currentDetails?.request || !currentDetails?.request?.CustomerName ? (
                   <h2>There is no request</h2>
                 ) : (
                   <div>
@@ -150,7 +150,7 @@ export function RequestModal({ currentDetails }) {
             </Modal.Body>
             <Modal.Footer>
               {currentDetails?.request?.status === "rejected" ||
-              currentDetails?.request?.status === "approved" || !currentDetails?.request ? (
+              currentDetails?.request?.status === "approved" || !currentDetails?.request || !currentDetails?.request?.CustomerName ? (
                 <></>
               ) : (
                 <>
