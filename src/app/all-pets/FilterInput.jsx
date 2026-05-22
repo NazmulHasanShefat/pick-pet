@@ -19,6 +19,7 @@ export function FilterInput({ selectedKey, setSelectedKey }) {
             ]),
           ).values(),
         ];
+        
         const newOptions = [...unique, {id: "all", name: "All"}];
         setDropItems(newOptions);
       } catch (error) {

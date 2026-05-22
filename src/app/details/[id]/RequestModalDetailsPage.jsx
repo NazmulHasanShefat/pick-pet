@@ -78,10 +78,10 @@ export function RequestModalDetailsPage({ currentDetails }) {
     <Modal>
       <Button
         variant="secondary"
-        className={`w-full py-2 bg-emerald-700 text-white outline-0`}
+        className={`w-full flex justify-center items-center gap-3 py-2 bg-emerald-700 text-white rounded-lg cursor-pointer outline-0 active:scale-95`}
       >
         <MdOutlineRequestPage className="my-0" />
-        Request
+        Request Now
       </Button>
       <Modal.Backdrop>
         <Modal.Container>

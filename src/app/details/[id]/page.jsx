@@ -3,10 +3,11 @@ import PetDetails from "./PetDetails";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { baseURL } from "@/context/baseUrl";
-import { MdOutlineDangerous } from "react-icons/md";
+import { MdOutlineDangerous, MdOutlineRequestPage } from "react-icons/md";
 import { CheckImageUrl } from "@/context/functions";
 import DescriptionAndName from "./DescriptionAndName";
 import { RequestModalDetailsPage } from "./RequestModalDetailsPage";
+import Link from "next/link";
 
 export const metadata = {
   title: "pickpet platform - Details",
@@ -15,9 +16,9 @@ export const metadata = {
 
 export default async function PetDetailsPage({ params }) {
   const { id } = await params;
-  const myToken = await auth.api.getToken({
-    headers: await headers(),
-  });
+  // const myToken = await auth.api.getToken({
+  //   headers: await headers(),
+  // });
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -25,12 +26,7 @@ export default async function PetDetailsPage({ params }) {
 
   const GetCurrentDetail = async () => {
     try {
-      const res = await fetch(`${baseURL}/single-pet/${id}`,{
-         headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${myToken?.token}`
-        },
-      });
+      const res = await fetch(`${baseURL}/single-pet/${id}`);
       const resData = await res.json();
       return resData;
     } catch (error) {
@@ -64,10 +60,12 @@ export default async function PetDetailsPage({ params }) {
       </div>
       <div className="md:col-span-6">
         <div className="w-full mb-5 md:px-10">
-        <h2 className="text-2xl">Request to adopt {currentDetails?.data?.petName}</h2>
-        <p className="text-gray-500">
-          Fill out the form and owner well recive your request{" "}
-        </p>
+          <h2 className="text-2xl">
+            Request to adopt {currentDetails?.data?.petName}
+          </h2>
+          <p className="text-gray-500">
+            Fill out the form and owner well recive your request{" "}
+          </p>
         </div>
 
         {adoptionStatus === true ? (
@@ -96,10 +94,17 @@ export default async function PetDetailsPage({ params }) {
           </div>
         ) : (
           <>
-           <PetDetails currentDetails={currentDetails} />
-           <div className="px-10 mt-10">
-          <RequestModalDetailsPage currentDetails={currentDetails} />
-           </div>
+            <PetDetails currentDetails={currentDetails} />
+            <div className="px-10 mt-10">
+              {!session ?
+              <Link href={"/login"} className="w-full flex justify-center items-center gap-3 py-2 bg-emerald-700 text-white rounded-lg cursor-pointer active:scale-95">
+                 <MdOutlineRequestPage className="my-0" />
+                 Request Now
+              </Link>
+              :
+              <RequestModalDetailsPage currentDetails={currentDetails} />
+              }
+            </div>
           </>
           // <PetRequestForm currentDetails={currentDetails} />
         )}

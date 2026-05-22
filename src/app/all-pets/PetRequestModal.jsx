@@ -58,7 +58,7 @@ export function PetRequestModal({ currentDetails }) {
         toast.success("request send successfully");
         // router refrash is not working 
         // router.refresh(); 
-        window.location.reload()
+        window.location.reload();
       } else {
         toast.danger(resData.message);
       }
