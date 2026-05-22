@@ -4,8 +4,9 @@ import { baseURL } from "@/context/baseUrl";
 import { Suspense } from "react";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 
+
 export default function RecentPets() {
-  const allPetsPromise = fetch(`${baseURL}/all-pets`).then((res) => res.json());
+  const allPetsPromise = fetch(`${baseURL}/all-pets`).then((res) => res.json()).catch((error)=>{console.log(error)});
   return (
     <section className="w-full max-w-7xl mx-auto px-5">
       <h1 className="text-2xl md:text-7xl font-bold text-center mt-15">

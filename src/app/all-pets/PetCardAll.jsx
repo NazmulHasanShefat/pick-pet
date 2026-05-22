@@ -10,9 +10,10 @@ import { MdOutlineRequestPage } from "react-icons/md";
 import { motion } from "motion/react";
 
 export default function PetCardAll({ allPetsPromise }) {
+  const myList = use(allPetsPromise);
+  
   const { data } = authClient.useSession();
 
-  const myList = use(allPetsPromise);
   const ListInfo = myList?.data;
 
   return ListInfo.length !== 0 ? (

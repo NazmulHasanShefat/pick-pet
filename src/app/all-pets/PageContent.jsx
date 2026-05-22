@@ -15,8 +15,7 @@ export default function PageContent() {
     : selectedKey && selectedKey !== "All"
       ? `${baseURL}/filter-pets?species=${selectedKey}`
       : `${baseURL}/all-pets`;
-  const allPetsPromise = fetch(url).then((res) => res.json());
-  console.log(selectedKey);
+  const allPetsPromise = fetch(url).then((res) => res.json()).catch((error)=>{console.log(error)});
 
   return (
     <div>

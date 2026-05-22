@@ -56,7 +56,9 @@ export function PetRequestModal({ currentDetails }) {
       const resData = await res.json();
       if (resData.success) {
         toast.success("request send successfully");
-        router.refresh();
+        // router refrash is not working 
+        // router.refresh(); 
+        window.location.reload()
       } else {
         toast.danger(resData.message);
       }
@@ -154,7 +156,8 @@ export function PetRequestModal({ currentDetails }) {
                     </TextField>
 
                     {/* date Pick up Date */}
-                    <DatePicker className="w-full" name="PickUpDate">
+                    
+                    <DatePicker className="w-full" name="c">
                       <Label>Pick up Date</Label>
                       <DateField.Group fullWidth>
                         <DateField.Input>
