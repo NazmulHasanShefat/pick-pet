@@ -257,7 +257,7 @@ export default function AddPetForm() {
         <p className="text-gray-500">
           {"Go to my listing page"}{" "}
           <Link
-            href={"/profile-dashbord/my-listing"}
+            href={"/profile-dashbord/my-listings"}
             className="text-emerald-400 hover:underline"
           >
             My Listing
