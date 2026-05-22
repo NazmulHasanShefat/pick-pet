@@ -295,7 +295,7 @@ export default function EditForm({ GetEditablePet, id }) {
 
       <div className="flex flex-col gap-5 mt-5">
         <Button type="submit" className={`bg-emerald-600`}>
-          Add a pet +
+         Update Now
         </Button>
         <p className="text-gray-500">
           {"Go to my listing page"}{" "}
