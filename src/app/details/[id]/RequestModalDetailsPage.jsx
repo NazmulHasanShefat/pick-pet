@@ -157,7 +157,7 @@ export function RequestModalDetailsPage({ currentDetails }) {
                     </TextField>
 
                     {/* date Pick up Date */}
-                    <DatePicker className="w-full" name="PickUpDate">
+                    <DatePicker className="w-full" isRequired name="PickUpDate">
                       <Label>Pick up Date</Label>
                       <DateField.Group fullWidth>
                         <DateField.Input>

@@ -157,7 +157,7 @@ export function PetRequestModal({ currentDetails }) {
 
                     {/* date Pick up Date */}
                     
-                    <DatePicker className="w-full" name="c">
+                    <DatePicker isRequired className="w-full" name="PickUpDate">
                       <Label>Pick up Date</Label>
                       <DateField.Group fullWidth>
                         <DateField.Input>
