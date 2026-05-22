@@ -64,7 +64,7 @@ export default async function PetDetailsPage({ params }) {
       </div>
       <div className="md:col-span-6">
         <div className="w-full mb-5 md:px-10">
-        <h2 className="text-2xl">Request to adopt petName</h2>
+        <h2 className="text-2xl">Request to adopt {currentDetails?.data?.petName}</h2>
         <p className="text-gray-500">
           Fill out the form and owner well recive your request{" "}
         </p>
