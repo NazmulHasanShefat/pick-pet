@@ -10,21 +10,14 @@ import {
   TextArea,
   toast,
 } from "@heroui/react";
-import { useRouter } from "next/navigation";
 
 import { MdOutlineRequestPage } from "react-icons/md";
 
-
-import {
-  Description,
-  FieldError,
-  Form,
-  Input,
-  Label,
-  TextField,
-} from "@heroui/react";
+import { FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 export function PetRequestModal({ currentDetails }) {
+  console.log(currentDetails);
   const router = useRouter();
   const { data } = authClient.useSession();
 
@@ -70,7 +63,6 @@ export function PetRequestModal({ currentDetails }) {
     } else {
       return router.push("/login");
     }
-    
   };
 
   return (
@@ -95,6 +87,12 @@ export function PetRequestModal({ currentDetails }) {
                   <div>
                     <p>You Can not request its alrady adopted</p>
                   </div>
+                ) : currentDetails?.Owner_Email === data?.user?.email ? (
+                  <>
+                    <div>
+                      <p>You Can not Adopt you own pet</p>
+                    </div>
+                  </>
                 ) : (
                   <Form
                     className="flex justify-center w-full mt-5 w-full flex-col gap-4 px-5"
@@ -215,7 +213,11 @@ export function PetRequestModal({ currentDetails }) {
                     </TextField>
 
                     <div className="flex flex-col gap-5">
-                      <Button slot={`close`} type="submit" className={`bg-emerald-600 w-full`}>
+                      <Button
+                        slot={`close`}
+                        type="submit"
+                        className={`bg-emerald-600 w-full`}
+                      >
                         Adopt Now
                       </Button>
                     </div>
