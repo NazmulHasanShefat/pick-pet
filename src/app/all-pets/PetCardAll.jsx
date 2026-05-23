@@ -1,3 +1,4 @@
+"use client"
 import { CheckImageUrl } from "@/context/functions";
 import Image from "next/image";
 import { use } from "react";
