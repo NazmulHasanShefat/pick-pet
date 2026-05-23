@@ -22,8 +22,6 @@ export default function PetCardAll({ allPetsPromise }) {
       const isValid = CheckImageUrl(list?.PetImageUrl);
       return (
         <div
-        initial={{ opacity: 0.7 }}
-          animate={{ opacity: 1 }}
           key={list._id}
           className="border border-emerald-500 rounded-3xl relative hover:translate-y-2 transition-translate duration-200"
         >
