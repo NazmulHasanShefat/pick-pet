@@ -17,7 +17,7 @@ export default function PetCardAll({ allPetsPromise }) {
 
   const ListInfo = myList?.data;
 
-  return ListInfo.length !== 0 ? (
+  return ListInfo?.length !== 0 && ListInfo? (
     ListInfo.map((list, index) => {
       const isValid = CheckImageUrl(list?.PetImageUrl);
       return (
