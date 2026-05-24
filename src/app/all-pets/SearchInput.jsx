@@ -6,26 +6,14 @@ import { TbFidgetSpinnerFilled } from "react-icons/tb";
 
 export default function SearchInput() {
   const [text, setText] = useState(null);
-  const [isLoding, setLoding] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const searchParamsText = useSearchParams();
   const pathname = usePathname();
-
-  // const handleSearch = (value) => {
-  //   setText(value);
-  //   if (text) {
-  //     setTimeout(() => {
-  //       const myUrlParams = new URLSearchParams(searchParamsText);
-  //       myUrlParams.set("SearchText", text);
-  //       router.push(`/all-pets?${myUrlParams.toString()}`);
-  //     }, 1000);
-  //   }if(text === ""){
-  //     router.push("/all-pets")
-  //   }
-  // };
-
+  
   useEffect(() => {
-    const delayDebounce = setTimeout(() => {
+    // delayDebounce
+    const searchDelay = setTimeout(() => {
       const params = new URLSearchParams(searchParamsText);
       if (text === "" || !text) {
         router.push("/all-pets");
@@ -33,20 +21,19 @@ export default function SearchInput() {
       }
       params.set("SearchText", text);
       router.push(`/all-pets?${params.toString()}`);
-      setLoding(true);
-      return () => clearTimeout(delayDebounce);
+      setLoading(true);
     }, 500);
 
-    return () => clearTimeout(delayDebounce);
+    return () => clearTimeout(searchDelay);
   }, [text]);
 
   useEffect(() => {
-    setLoding(false); // pathname বা searchParams বদলালে loading false
+    setLoading(false); // pathname বা searchParams বদলালে loading false
   }, [pathname, searchParamsText]);
 
   return (
     <>
-      {isLoding ? (
+      {isLoading ? (
         <div className="fixed left-0 top-0 text-emerald-700 z-50 h-screen w-full bg-black/40 flex items-center justify-center">
           <TbFidgetSpinnerFilled size={120} className="animate-spin" />
         </div>
