@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import PetCardAll from "./PetCardAll";
 import { FilterInput } from "./FilterInput";
 import SkeletonCard from "@/components/ui/SkeletonCard";
-import { baseURL } from "@/context/baseUrl";
+import { baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import SearchInput from "./SearchInput";
 
 export const metadata = {
@@ -13,8 +13,6 @@ export const metadata = {
 export default async function Mypage({ searchParams }) {
   const params = await searchParams;
   const selectedKey = params?.filter;
-  console.log(selectedKey, "this is key");
-
   const SearchText = params?.SearchText;
 
   // const url = SearchText
@@ -25,18 +23,18 @@ export default async function Mypage({ searchParams }) {
 
   const getPetsPromise = () => {
     if (SearchText) {
-      const promise = fetch(`${baseURL}/search?query=${SearchText}`)
+      const promise = fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/search?query=${SearchText}`)
         .then((res) => res.json())
         .catch((error) => console.log(error));
       return promise;
     }
     if (selectedKey && selectedKey !== "All") {
-      const promise = fetch(`${baseURL}/filter-pets?species=${selectedKey}`)
+      const promise = fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/filter-pets?species=${selectedKey}`)
         .then((res) => res.json())
         .catch((error) => console.log(error));
       return promise;
     } else {
-      const promise = fetch(`${baseURL}/all-pets`)
+      const promise = fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/all-pets`)
         .then((res) => res.json())
         .catch((error) => console.log(error));
       return promise;
@@ -44,7 +42,7 @@ export default async function Mypage({ searchParams }) {
   };
   const allPetsPromise = getPetsPromise();
 
-  const spiciesCategoryPromise = fetch(`${baseURL}/find-uniqueCategorys`)
+  const spiciesCategoryPromise = fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/find-uniqueCategorys`)
     .then((res) => res.json())
     .catch((error) => console.log(error));
 
