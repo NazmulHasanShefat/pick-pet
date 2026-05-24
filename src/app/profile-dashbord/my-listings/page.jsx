@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import MyListCart from "./MyListingCard";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import LodingSpin from "@/components/ui/LodingSpin";
@@ -17,7 +17,7 @@ export default async function MyListingPage() {
   });
 
   const myListPromise = fetch(
-    `${baseURL}/my-listing/${session?.user?.email}`,
+    `${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/my-listing/${session?.user?.email}`,
   ).then((res) => res.json());
 
   return (

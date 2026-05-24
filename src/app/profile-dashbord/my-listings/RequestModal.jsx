@@ -1,5 +1,5 @@
 "use client";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import { Button, Modal, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export function RequestModal({ currentDetails }) {
         adopted: false,
         status: "rejected",
       };
-      const res = await fetch(`${baseURL}/RejectAdoptRequest/${id}`, {
+      const res = await fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/RejectAdoptRequest/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export function RequestModal({ currentDetails }) {
         adopted: true,
         status: "approved",
       };
-      const res = await fetch(`${baseURL}/approve-request/${id}`, {
+      const res = await fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/approve-request/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

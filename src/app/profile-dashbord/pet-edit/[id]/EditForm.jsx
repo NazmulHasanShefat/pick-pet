@@ -1,5 +1,5 @@
 "use client";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import { ChevronsExpandVertical } from "@gravity-ui/icons";
 import { ListBox, Select, TextArea } from "@heroui/react";
@@ -30,7 +30,7 @@ export default function EditForm({ GetEditablePet, id }) {
     const {data:myToken} = await authClient.token()
     
     try {
-      const result = await fetch(`${baseURL}/update-pet/${id}`, {
+      const result = await fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/update-pet/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

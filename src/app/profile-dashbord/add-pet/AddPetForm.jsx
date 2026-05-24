@@ -1,5 +1,5 @@
 "use client";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import { ChevronsExpandVertical } from "@gravity-ui/icons";
 import { ListBox, Select, TextArea } from "@heroui/react";
@@ -24,7 +24,7 @@ export default function AddPetForm() {
     const formData = new FormData(e.currentTarget);
     const petData = Object.fromEntries(formData);
     try {
-      const result = await fetch(`${baseURL}/create-pet_details`, {
+      const result = await fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/create-pet_details`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -2,7 +2,7 @@ import Image from "next/image";
 import PetDetails from "./PetDetails";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { MdOutlineDangerous, MdOutlineRequestPage } from "react-icons/md";
 import { CheckImageUrl } from "@/context/functions";
 import DescriptionAndName from "./DescriptionAndName";
@@ -25,7 +25,7 @@ export default async function PetDetailsPage({ params }) {
 
   const GetCurrentDetail = async () => {
     try {
-      const res = await fetch(`${baseURL}/single-pet/${id}`);
+      const res = await fetch(`${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/single-pet/${id}`);
       const resData = await res.json();
       return resData;
     } catch (error) {

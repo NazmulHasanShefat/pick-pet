@@ -1,5 +1,5 @@
 "use client";
-import { baseURL } from "@/context/baseUrl";
+import { baseURL, baseUrlLocal, baseUrlProduction } from "@/context/baseUrl";
 import { authClient } from "@/lib/auth-client";
 import {
   Button,
@@ -43,7 +43,7 @@ export default function PetRequestForm({ currentDetails }) {
       };
 
       const res = await fetch(
-        `${baseURL}/send-adoption-request/${currentDetails?.data?._id}`,
+        `${process.env.DEVELOPMENT === "local" ? baseUrlLocal : baseUrlProduction}/send-adoption-request/${currentDetails?.data?._id}`,
         {
           method: "PATCH",
           headers: {
